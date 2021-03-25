@@ -166,6 +166,14 @@ class K2NativeCompilerArguments : CommonCompilerArguments() {
     var lightDebugDeprecated: Boolean = false
 
     @Argument(
+            value = "-Xg-generate-inlined-body-trampoline",
+            valueDescription = "{disable|enable}",
+            description = """generates extra instruction before inlined function body to make debugger breakpoint resolving more precising"""
+    )
+    var generateInlinedBodyTrampolineString: String? = null
+
+
+    @Argument(
             value = MAKE_CACHE,
             valueDescription = "<path>",
             description = "Path of the library to be compiled to cache",

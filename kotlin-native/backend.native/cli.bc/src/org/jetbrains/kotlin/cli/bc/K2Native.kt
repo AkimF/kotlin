@@ -169,6 +169,15 @@ class K2Native : CLICompiler<K2NativeCompilerArguments>() {
                         null
                     }
                 })
+                putIfNotNull(GENERATE_INLINED_BODY_TRAMPOLINE, when (val it = arguments.generateInlinedBodyTrampolineString) {
+                    "enable" -> true
+                    "disable" -> false
+                    null -> null
+                    else -> {
+                        configuration.report(ERROR, "Unsupported -Xgenerate-inlined-body-trampoline= value: $it. Possible values are 'enable'/'disable'")
+                        null
+                    }
+                })
                 put(STATIC_FRAMEWORK, selectFrameworkType(configuration, arguments, outputKind))
                 put(OVERRIDE_CLANG_OPTIONS, arguments.clangOptions.toNonNullList())
                 put(ALLOCATION_MODE, arguments.allocator)
