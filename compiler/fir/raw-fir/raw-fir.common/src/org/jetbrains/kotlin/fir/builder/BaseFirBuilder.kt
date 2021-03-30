@@ -1147,6 +1147,15 @@ abstract class BaseFirBuilder<T>(val baseSession: FirSession, val context: Conte
         }
     }
 
+    protected fun FirRegularClass.initContainingClassForLocalAttr() {
+        if (isLocal) {
+            val currentDispatchReceiverType = currentDispatchReceiverType()
+            if (currentDispatchReceiverType != null) {
+                containingClassForLocalAttr = currentDispatchReceiverType.lookupTag
+            }
+        }
+    }
+
     protected fun FirCallableDeclaration<*>.initContainingClassAttr() {
         val currentDispatchReceiverType = currentDispatchReceiverType() ?: return
         containingClassAttr = currentDispatchReceiverType.lookupTag
