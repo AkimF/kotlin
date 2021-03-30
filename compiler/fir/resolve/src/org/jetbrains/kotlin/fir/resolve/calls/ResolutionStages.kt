@@ -151,11 +151,11 @@ internal object CheckArguments : CheckerStage() {
                 sink = sink,
                 context = context
             )
-            if (candidate.system.hasContradiction) {
-                sink.yieldDiagnostic(InapplicableCandidate)
-            }
-            sink.yieldIfNeed()
         }
+        if (candidate.system.hasContradiction) {
+            sink.yieldDiagnostic(InapplicableCandidate)
+        }
+        sink.yieldIfNeed()
     }
 }
 
