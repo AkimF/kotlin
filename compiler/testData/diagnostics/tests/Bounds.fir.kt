@@ -7,12 +7,12 @@ package boundsWithSubstitutors
     class C : A<C>()
 
     val a = B<C>()
-    val a1 = B<<!UPPER_BOUND_VIOLATED!>Int<!>>()
+    val a1 = <!INAPPLICABLE_CANDIDATE!>B<!><Int>()
 
     class X<A, B : A>()
 
     val b = X<Any, X<A<C>, C>>()
-    val b0 = X<Any, <!UPPER_BOUND_VIOLATED!>Any?<!>>()
+    val b0 = <!INAPPLICABLE_CANDIDATE!>X<!><Any, Any?>()
     val b1 = X<Any, <!UPPER_BOUND_VIOLATED!>X<A<C>, String><!>>()
 
 // FILE: b.kt
@@ -21,20 +21,20 @@ package boundsWithSubstitutors
 
   class Pair<A, B>
 
-  abstract class C<T : B<Int>, X :  (B<Char>) -> Pair<B<Any>, B<A>>>() : B<Any>() { // 2 errors
-    val a = B<<!UPPER_BOUND_VIOLATED!>Char<!>>() // error
+  abstract class C<T : B<Int>, X :  (B<Char>) -> Pair<B<Any>, B<A>>>() : <!INAPPLICABLE_CANDIDATE!>B<Any><!>() { // 2 errors
+    val a = <!INAPPLICABLE_CANDIDATE!>B<!><Char>() // error
 
     abstract val x :  (B<Char>) -> B<Any>
   }
 
 
 fun test() {
-    foo<<!UPPER_BOUND_VIOLATED!>Int?<!>>()
+    <!INAPPLICABLE_CANDIDATE!>foo<!><Int?>()
     foo<Int>()
     bar<Int?>()
     bar<Int>()
-    bar<<!UPPER_BOUND_VIOLATED!>Double?<!>>()
-    bar<<!UPPER_BOUND_VIOLATED!>Double<!>>()
+    <!INAPPLICABLE_CANDIDATE!>bar<!><Double?>()
+    <!INAPPLICABLE_CANDIDATE!>bar<!><Double>()
     1.<!INAPPLICABLE_CANDIDATE!>buzz<!><Double>()
 }
 

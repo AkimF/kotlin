@@ -11,15 +11,15 @@ fun <T : A> fest() {
 }
 
 fun test() {
-    val b1 = B<<!UPPER_BOUND_VIOLATED!>Int<!>>()
+    val b1 = <!INAPPLICABLE_CANDIDATE!>B<!><Int>()
     val b2 = B<C>()
-    val b3 = B<<!UPPER_BOUND_VIOLATED!>Any?<!>>()
-    val b4 = B<<!UNRESOLVED_REFERENCE!>UnexistingType<!>>()
-    val b5 = B<<!UPPER_BOUND_VIOLATED!>B<<!UNRESOLVED_REFERENCE!>UnexistingType<!>><!>>()
-    fest<<!UPPER_BOUND_VIOLATED!>Boolean<!>>()
+    val b3 = <!INAPPLICABLE_CANDIDATE!>B<!><Any?>()
+    val b4 = <!INAPPLICABLE_CANDIDATE!>B<!><<!UNRESOLVED_REFERENCE!>UnexistingType<!>>()<!UNRESOLVED_REFERENCE{PSI}!>NL<!><!SYNTAX{PSI}!><<!>Int<!SYNTAX{PSI}!>><!>()NumberPhile<!SYNTAX{PSI}!><!>
+    val b5 = <!INAPPLICABLE_CANDIDATE!>B<!><B<<!UNRESOLVED_REFERENCE!>UnexistingType<!>>>()
+    <!INAPPLICABLE_CANDIDATE!>fest<!><Boolean>()
     fest<C>()
     fest<HHH>()
-    fest<<!UPPER_BOUND_VIOLATED!>JJJ<!>>()
+    <!INAPPLICABLE_CANDIDATE!>fest<!><JJJ>()
 }
 
 open class S<F, G : F>
@@ -31,8 +31,8 @@ fun <K, L : K> rest() {
     val o3 = S<L, L>()
 
     val o4 = S<S<K, L>, T<K, L>>()
-    val o5 = S<S<K, L>, <!UPPER_BOUND_VIOLATED!>T<K, K><!>>()
-    val o5 = S<S<L, L>, <!UPPER_BOUND_VIOLATED!>T<K, L><!>>()
+    val o5 = <!INAPPLICABLE_CANDIDATE!>S<!><S<K, L>, T<K, K>>()
+    val o5 = <!INAPPLICABLE_CANDIDATE!>S<!><S<L, L>, T<K, L>>()
 
     val o6 = S<Any, <!UPPER_BOUND_VIOLATED!>T<S<K, L>, String><!>>()
     val o7 = S<Any, T<S<K, L>, Nothing>>()
@@ -40,9 +40,9 @@ fun <K, L : K> rest() {
 
 class NumColl<T : Collection<Number>>
 typealias NL<K> = NumColl<List<K>>
-val test7 = NL<Int>()
+val test7 = NL<Int>()<!UNRESOLVED_REFERENCE{PSI}!>NumberPhile<!><!SYNTAX{PSI}!><!>
 val test8 = NL<String>()
 
 class NumberPhile<T: Number>(x: T)
 val np1 = NumberPhile(10)
-val np2 = <!INAPPLICABLE_CANDIDATE!>NumberPhile<!>("Test")
+val np2 = NumberPhile(<!ARGUMENT_TYPE_MISMATCH!>"Test"<!>)
