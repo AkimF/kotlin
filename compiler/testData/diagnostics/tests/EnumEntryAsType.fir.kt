@@ -47,9 +47,9 @@ typealias ArrayOfEnumEntryAlias = Array<RedAlias>
 fun <T> bar(a: Any): T = a as T
 
 fun <T> foo() {
-    foo<<!UNRESOLVED_REFERENCE!>Color.RED<!>>()
-    foo<RedAlias>()
-    <!INAPPLICABLE_CANDIDATE!>bar<!><<!UNRESOLVED_REFERENCE!>Color.RED<!>>(Color.RED)
+    <!INAPPLICABLE_CANDIDATE!>foo<!><<!UNRESOLVED_REFERENCE!>Color.RED<!>>()
+    <!INAPPLICABLE_CANDIDATE!>foo<!><RedAlias>()
+    bar<<!UNRESOLVED_REFERENCE!>Color.RED<!>>(<!ARGUMENT_TYPE_MISMATCH!>Color.RED<!>)
 }
 
 fun Array<<!UNRESOLVED_REFERENCE!>Color.RED<!>>.foo(entries: Array<<!UNRESOLVED_REFERENCE!>Color.RED<!>>): Array<<!UNRESOLVED_REFERENCE!>Color.RED<!>> = null!!
