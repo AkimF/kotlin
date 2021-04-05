@@ -24,14 +24,21 @@ internal sealed class SourceRoots(val kotlinSourceFiles: List<File>) {
         logger.kotlinDebug { "$taskName source roots: ${dumpPaths(kotlinSourceFiles)}" }
     }
 
-    class ForJvm(kotlinSourceFiles: List<File>, val javaSourceRoots: Set<File>) : SourceRoots(kotlinSourceFiles) {
+    class ForJvm constructor(
+        kotlinSourceFiles: List<File>,
+        private val javaSourceRootsProvider: () -> Set<File>
+    ) : SourceRoots(kotlinSourceFiles) {
+        val javaSourceRoots: Set<File>
+            get() = javaSourceRootsProvider()
+
+        constructor(kotlinSourceFiles: List<File>, allSourceRoots: FileCollection, taskSource: FileCollection) : this(kotlinSourceFiles, {
+            findRootsForSources(allSourceRoots, taskSource.filter(File::isJavaFile)).toSet()
+        })
+
         companion object {
             fun create(taskSource: FileTree, sourceRoots: FilteringSourceRootsContainer, sourceFilesExtensions: List<String>): ForJvm {
                 val kotlinSourceFiles = (taskSource as Iterable<File>).filter { it.isKotlinFile(sourceFilesExtensions) }
-                val javaSourceRoots = findRootsForSources(
-                    sourceRoots.sourceRoots, taskSource.filter(File::isJavaFile)
-                )
-                return ForJvm(kotlinSourceFiles, javaSourceRoots)
+                return ForJvm(kotlinSourceFiles, sourceRoots.sourceRoots, taskSource)
             }
 
             private fun findRootsForSources(allSourceRoots: Iterable<File>, sources: Iterable<File>): Set<File> {
