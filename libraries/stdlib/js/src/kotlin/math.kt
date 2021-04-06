@@ -295,7 +295,7 @@ public actual inline fun ln1p(x: Double): Double = nativeMath.log1p(x)
  */
 @SinceKotlin("1.2")
 @InlineOnly
-public actual inline fun ceil(x: Double): Double = nativeMath.ceil(x).unsafeCast<Double>() // TODO: Remove unsafe cast after removing public js.math
+public actual inline fun ceil(x: Double): Double = nativeMath.ceil(x)
 
 /**
  * Rounds the given value [x] to an integer towards negative infinity.
@@ -307,7 +307,7 @@ public actual inline fun ceil(x: Double): Double = nativeMath.ceil(x).unsafeCast
  */
 @SinceKotlin("1.2")
 @InlineOnly
-public actual inline fun floor(x: Double): Double = nativeMath.floor(x).unsafeCast<Double>()
+public actual inline fun floor(x: Double): Double = nativeMath.floor(x)
 
 /**
  * Rounds the given value [x] to an integer towards zero.
@@ -330,7 +330,7 @@ public actual inline fun truncate(x: Double): Double = nativeMath.trunc(x)
 @SinceKotlin("1.2")
 public actual fun round(x: Double): Double {
     if (x % 0.5 != 0.0) {
-        return nativeMath.round(x).unsafeCast<Double>()
+        return nativeMath.round(x)
     }
     val floor = floor(x)
     return if (floor % 2 == 0.0) floor else ceil(x)
@@ -509,7 +509,7 @@ public actual fun Double.roundToInt(): Int = when {
     isNaN() -> throw IllegalArgumentException("Cannot round NaN value.")
     this > Int.MAX_VALUE -> Int.MAX_VALUE
     this < Int.MIN_VALUE -> Int.MIN_VALUE
-    else -> nativeMath.round(this).unsafeCast<Double>().toInt()
+    else -> nativeMath.round(this).toInt()
 }
 
 /**
@@ -527,7 +527,7 @@ public actual fun Double.roundToLong(): Long = when {
     isNaN() -> throw IllegalArgumentException("Cannot round NaN value.")
     this > Long.MAX_VALUE -> Long.MAX_VALUE
     this < Long.MIN_VALUE -> Long.MIN_VALUE
-    else -> nativeMath.round(this).unsafeCast<Double>().toLong()
+    else -> nativeMath.round(this).toLong()
 }
 
 // endregion

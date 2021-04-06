@@ -9,81 +9,48 @@ package kotlin.js
  * Exposes the JavaScript [Math object](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) to Kotlin.
  */
 @PublishedApi
+@JsName("Math")
 internal external object JsMath {
-    @PublishedApi
-    internal fun abs(value: Double): Double
-    @PublishedApi
-    internal fun acos(value: Double): Double
-    @PublishedApi
-    internal fun asin(value: Double): Double
-    @PublishedApi
-    internal fun atan(value: Double): Double
-    @PublishedApi
-    internal fun atan2(y: Double, x: Double): Double
-    @PublishedApi
-    internal fun cos(value: Double): Double
-    @PublishedApi
-    internal fun sin(value: Double): Double
-    @PublishedApi
-    internal fun exp(value: Double): Double
-    @PublishedApi
-    internal fun max(vararg values: Int): Int
-    @PublishedApi
-    internal fun max(vararg values: Float): Float
-    @PublishedApi
-    internal fun max(vararg values: Double): Double
-    @PublishedApi
-    internal fun min(vararg values: Int): Int
-    @PublishedApi
-    internal fun min(vararg values: Float): Float
-    @PublishedApi
-    internal fun min(vararg values: Double): Double
-    @PublishedApi
-    internal fun sqrt(value: Double): Double
-    @PublishedApi
-    internal fun tan(value: Double): Double
-    @PublishedApi
-    internal fun log(value: Double): Double
-    @PublishedApi
-    internal fun pow(base: Double, exp: Double): Double
-    internal fun round(value: Number): Int
-    @PublishedApi
-    internal fun floor(value: Number): Int
-    @PublishedApi
-    internal fun ceil(value: Number): Int
+    val LN2: Double
+    fun abs(value: Double): Double
+    fun acos(value: Double): Double
+    fun asin(value: Double): Double
+    fun atan(value: Double): Double
+    fun atan2(y: Double, x: Double): Double
+    fun cos(value: Double): Double
+    fun sin(value: Double): Double
+    fun exp(value: Double): Double
+    fun max(vararg values: Int): Int
+    fun max(vararg values: Float): Float
+    fun max(vararg values: Double): Double
+    fun min(vararg values: Int): Int
+    fun min(vararg values: Float): Float
+    fun min(vararg values: Double): Double
+    fun sqrt(value: Double): Double
+    fun tan(value: Double): Double
+    fun log(value: Double): Double
+    fun pow(base: Double, exp: Double): Double
+    fun round(value: Number): Double
+    fun floor(value: Number): Double
+    fun ceil(value: Number): Double
 
-    @PublishedApi
-    internal fun trunc(value: Number): Double
-    @PublishedApi
-    internal fun sign(value: Number): Double
+    fun trunc(value: Number): Double
+    fun sign(value: Number): Double
 
-    @PublishedApi
-    internal fun sinh(value: Double): Double
-    @PublishedApi
-    internal fun cosh(value: Double): Double
-    @PublishedApi
-    internal fun tanh(value: Double): Double
-    @PublishedApi
-    internal fun asinh(value: Double): Double
-    @PublishedApi
-    internal fun acosh(value: Double): Double
-    @PublishedApi
-    internal fun atanh(value: Double): Double
+    fun sinh(value: Double): Double
+    fun cosh(value: Double): Double
+    fun tanh(value: Double): Double
+    fun asinh(value: Double): Double
+    fun acosh(value: Double): Double
+    fun atanh(value: Double): Double
 
-    @PublishedApi
-    internal fun hypot(x: Double, y: Double): Double
+    fun hypot(x: Double, y: Double): Double
 
-    @PublishedApi
-    internal fun expm1(value: Double): Double
+    fun expm1(value: Double): Double
+    fun log10(value: Double): Double
+    fun log2(value: Double): Double
+    fun log1p(value: Double): Double
 
-    @PublishedApi
-    internal fun log10(value: Double): Double
-    @PublishedApi
-    internal fun log2(value: Double): Double
-    @PublishedApi
-    internal fun log1p(value: Double): Double
-
-    @PublishedApi
-    internal fun clz32(value: Int): Int
+    fun clz32(value: Int): Int
 }
 
