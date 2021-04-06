@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 JetBrains s.r.o. and Kotlin Programming Language contributors.
+ * Copyright 2010-2021 JetBrains s.r.o. and Kotlin Programming Language contributors.
  * Use of this source code is governed by the Apache 2.0 license that can be found in the license/LICENSE.txt file.
  */
 
@@ -9,9 +9,7 @@ package kotlin.js
  * Exposes the JavaScript [Math object](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) to Kotlin.
  */
 @PublishedApi
-internal external object Math {
-    internal val PI: Double
-    internal fun random(): Double
+internal external object JsMath {
     @PublishedApi
     internal fun abs(value: Double): Double
     @PublishedApi
@@ -89,12 +87,3 @@ internal external object Math {
     internal fun clz32(value: Int): Int
 }
 
-/**
- * Returns the smaller of two values.
- */
-internal fun Math.min(a: Long, b: Long): Long = if (a <= b) a else b
-
-/**
- * Returns the greater of two values.
- */
-internal fun Math.max(a: Long, b: Long): Long = if (a >= b) a else b
