@@ -121,6 +121,8 @@ public actual fun String.replaceFirst(oldValue: String, newValue: String, ignore
 /**
  * Returns a copy of this string converted to upper case using the rules of the default locale.
  */
+@Deprecated("Use uppercase() instead.", ReplaceWith("uppercase(Locale.getDefault())", "java.util.Locale"))
+@DeprecatedSinceKotlin(warningSince = "1.5")
 @kotlin.internal.InlineOnly
 public actual inline fun String.toUpperCase(): String = (this as java.lang.String).toUpperCase()
 
@@ -140,6 +142,8 @@ public actual inline fun String.uppercase(): String = (this as java.lang.String)
 /**
  * Returns a copy of this string converted to lower case using the rules of the default locale.
  */
+@Deprecated("Use lowercase() instead.", ReplaceWith("lowercase(Locale.getDefault())", "java.util.Locale"))
+@DeprecatedSinceKotlin(warningSince = "1.5")
 @kotlin.internal.InlineOnly
 public actual inline fun String.toLowerCase(): String = (this as java.lang.String).toLowerCase()
 
@@ -645,7 +649,8 @@ public fun String.regionMatches(thisOffset: Int, other: String, otherOffset: Int
 /**
  * Returns a copy of this string converted to lower case using the rules of the specified locale.
  */
-@OptIn(ExperimentalStdlibApi::class)
+@Deprecated("Use lowercase() instead.", ReplaceWith("lowercase(locale)"))
+@DeprecatedSinceKotlin(warningSince = "1.5")
 @kotlin.internal.InlineOnly
 public inline fun String.toLowerCase(locale: java.util.Locale): String = lowercase(locale)
 
@@ -665,7 +670,8 @@ public inline fun String.lowercase(locale: Locale): String = (this as java.lang.
 /**
  * Returns a copy of this string converted to upper case using the rules of the specified locale.
  */
-@OptIn(ExperimentalStdlibApi::class)
+@Deprecated("Use uppercase() instead.", ReplaceWith("uppercase(locale)"))
+@DeprecatedSinceKotlin(warningSince = "1.5")
 @kotlin.internal.InlineOnly
 public inline fun String.toUpperCase(locale: java.util.Locale): String = uppercase(locale)
 

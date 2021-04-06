@@ -198,6 +198,8 @@ private fun String.unsafeRangeEqualsIgnoreCase(thisOffset: Int, other: String, o
 /**
  * Returns a copy of this string converted to upper case using the rules of the default locale.
  */
+@Deprecated("Use uppercase() instead.", ReplaceWith("uppercase()"))
+@DeprecatedSinceKotlin(warningSince = "1.5")
 public actual fun String.toUpperCase(): String = uppercaseImpl()
 
 /**
@@ -215,6 +217,8 @@ public actual fun String.uppercase(): String = uppercaseImpl()
 /**
  * Returns a copy of this string converted to lower case using the rules of the default locale.
  */
+@Deprecated("Use lowercase() instead.", ReplaceWith("lowercase()"))
+@DeprecatedSinceKotlin(warningSince = "1.5")
 public actual fun String.toLowerCase(): String = lowercaseImpl()
 
 /**
