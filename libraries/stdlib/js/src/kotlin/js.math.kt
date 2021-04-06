@@ -8,30 +8,51 @@ package kotlin.js
 /**
  * Exposes the JavaScript [Math object](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) to Kotlin.
  */
-public external object Math {
-    public val PI: Double
-    public fun random(): Double
-    public fun abs(value: Double): Double
-    public fun acos(value: Double): Double
-    public fun asin(value: Double): Double
-    public fun atan(value: Double): Double
-    public fun atan2(y: Double, x: Double): Double
-    public fun cos(value: Double): Double
-    public fun sin(value: Double): Double
-    public fun exp(value: Double): Double
-    public fun max(vararg values: Int): Int
-    public fun max(vararg values: Float): Float
-    public fun max(vararg values: Double): Double
-    public fun min(vararg values: Int): Int
-    public fun min(vararg values: Float): Float
-    public fun min(vararg values: Double): Double
-    public fun sqrt(value: Double): Double
-    public fun tan(value: Double): Double
-    public fun log(value: Double): Double
-    public fun pow(base: Double, exp: Double): Double
-    public fun round(value: Number): Int
-    public fun floor(value: Number): Int
-    public fun ceil(value: Number): Int
+@PublishedApi
+internal external object Math {
+    internal val PI: Double
+    internal fun random(): Double
+    @PublishedApi
+    internal fun abs(value: Double): Double
+    @PublishedApi
+    internal fun acos(value: Double): Double
+    @PublishedApi
+    internal fun asin(value: Double): Double
+    @PublishedApi
+    internal fun atan(value: Double): Double
+    @PublishedApi
+    internal fun atan2(y: Double, x: Double): Double
+    @PublishedApi
+    internal fun cos(value: Double): Double
+    @PublishedApi
+    internal fun sin(value: Double): Double
+    @PublishedApi
+    internal fun exp(value: Double): Double
+    @PublishedApi
+    internal fun max(vararg values: Int): Int
+    @PublishedApi
+    internal fun max(vararg values: Float): Float
+    @PublishedApi
+    internal fun max(vararg values: Double): Double
+    @PublishedApi
+    internal fun min(vararg values: Int): Int
+    @PublishedApi
+    internal fun min(vararg values: Float): Float
+    @PublishedApi
+    internal fun min(vararg values: Double): Double
+    @PublishedApi
+    internal fun sqrt(value: Double): Double
+    @PublishedApi
+    internal fun tan(value: Double): Double
+    @PublishedApi
+    internal fun log(value: Double): Double
+    @PublishedApi
+    internal fun pow(base: Double, exp: Double): Double
+    internal fun round(value: Number): Int
+    @PublishedApi
+    internal fun floor(value: Number): Int
+    @PublishedApi
+    internal fun ceil(value: Number): Int
 
     @PublishedApi
     internal fun trunc(value: Number): Double
@@ -71,9 +92,9 @@ public external object Math {
 /**
  * Returns the smaller of two values.
  */
-public fun Math.min(a: Long, b: Long): Long = if (a <= b) a else b
+internal fun Math.min(a: Long, b: Long): Long = if (a <= b) a else b
 
 /**
  * Returns the greater of two values.
  */
-public fun Math.max(a: Long, b: Long): Long = if (a >= b) a else b
+internal fun Math.max(a: Long, b: Long): Long = if (a >= b) a else b
