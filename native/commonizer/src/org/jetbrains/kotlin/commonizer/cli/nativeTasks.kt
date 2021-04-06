@@ -100,7 +100,7 @@ internal class NativeDistributionCommonize(options: Collection<Option<*>>) : Tas
 
         val progressLogger = ProgressLogger(CliLoggerAdapter(2), startImmediately = true)
         val libraryLoader = DefaultNativeLibraryLoader(progressLogger)
-        val repository = KonanDistributionRepository(distribution, outputTarget.allLeaves(), libraryLoader)
+        val repository = KonanDistributionRepository(distribution, outputTarget.konanTargets, libraryLoader)
         val statsCollector = StatsCollector(statsType, outputTarget.withAllAncestors().toList())
 
         val resultsConsumer = buildResultsConsumer {
@@ -132,7 +132,7 @@ internal class NativeDistributionCommonize(options: Collection<Option<*>>) : Tas
 
     companion object {
         private fun estimateLibrariesCount(repository: Repository, targets: Iterable<LeafCommonizerTarget>): Int {
-            return targets.flatMap { repository.getLibraries(it) }.count()
+            return targets.flatMap { repository.getLibraries(setOf(it.konanTarget)) }.count()
         }
     }
 }

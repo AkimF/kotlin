@@ -5,15 +5,18 @@
 
 package org.jetbrains.kotlin.commonizer.repository
 
-import org.jetbrains.kotlin.commonizer.*
+import org.jetbrains.kotlin.commonizer.KonanDistribution
+import org.jetbrains.kotlin.commonizer.NativeLibraryLoader
 import org.jetbrains.kotlin.commonizer.konan.NativeLibrary
+import org.jetbrains.kotlin.commonizer.platformLibsDir
+import org.jetbrains.kotlin.konan.target.KonanTarget
 
 internal class KonanDistributionRepository(
     konanDistribution: KonanDistribution,
-    targets: Set<LeafCommonizerTarget>,
+    targets: Set<KonanTarget>,
     libraryLoader: NativeLibraryLoader,
 ) : Repository {
-    private val librariesByTarget: Map<LeafCommonizerTarget, Lazy<Set<NativeLibrary>>> =
+    private val librariesByTarget: Map<KonanTarget, Lazy<Set<NativeLibrary>>> =
         targets.associateWith { target ->
             lazy {
                 konanDistribution.platformLibsDir
@@ -26,10 +29,8 @@ internal class KonanDistributionRepository(
             }
         }
 
-    override fun getLibraries(target: CommonizerTarget): Set<NativeLibrary> {
-        return when (target) {
-            is LeafCommonizerTarget -> librariesByTarget[target]?.value ?: error("Missing target libraries for: $target")
-            is SharedCommonizerTarget -> emptySet()
-        }
+    override fun getLibraries(targets: Set<KonanTarget>): Set<NativeLibrary> {
+        val target = targets.singleOrNull() ?: return emptySet()
+        return librariesByTarget[target]?.value ?: error("Missing target libraries for $target")
     }
 }

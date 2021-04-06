@@ -5,12 +5,11 @@
 
 package org.jetbrains.kotlin.commonizer.repository
 
-import org.jetbrains.kotlin.commonizer.CommonizerTarget
-import org.jetbrains.kotlin.commonizer.LeafCommonizerTarget
 import org.jetbrains.kotlin.commonizer.konan.NativeLibrary
+import org.jetbrains.kotlin.konan.target.KonanTarget
 
 internal interface Repository {
-    fun getLibraries(target: CommonizerTarget): Set<NativeLibrary>
+    fun getLibraries(targets: Set<KonanTarget>): Set<NativeLibrary>
 }
 
 internal operator fun Repository.plus(other: Repository): Repository {
@@ -21,13 +20,13 @@ internal operator fun Repository.plus(other: Repository): Repository {
 }
 
 private class CompositeRepository(val repositories: Iterable<Repository>) : Repository {
-    override fun getLibraries(target: CommonizerTarget): Set<NativeLibrary> {
-        return repositories.map { it.getLibraries(target) }.flatten().toSet()
+    override fun getLibraries(targets: Set<KonanTarget>): Set<NativeLibrary> {
+        return repositories.map { it.getLibraries(targets) }.flatten().toSet()
     }
 }
 
 internal object EmptyRepository : Repository {
-    override fun getLibraries(target: CommonizerTarget): Set<NativeLibrary> {
+    override fun getLibraries(targets: Set<KonanTarget>): Set<NativeLibrary> {
         return emptySet()
     }
 }

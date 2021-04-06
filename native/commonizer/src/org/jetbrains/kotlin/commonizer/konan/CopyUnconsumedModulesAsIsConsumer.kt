@@ -34,7 +34,7 @@ internal class CopyUnconsumedModulesAsIsConsumer(
     }
 
     private fun copyTargetAsIs(target: LeafCommonizerTarget) {
-        val libraries = repository.getLibraries(target)
+        val libraries = repository.getLibraries(setOf(target.konanTargetOrNull ?: return))
         val librariesDestination = outputLayout.getTargetDirectory(destination, target)
         librariesDestination.mkdirs() // always create an empty directory even if there is nothing to copy
         libraries.map { it.library.libraryFile.absolutePath }.map(::File).forEach { libraryFile ->

@@ -109,7 +109,7 @@ internal open class CInteropCommonizerTask : AbstractCInteropCommonizerTask() {
         GradleCliCommonizer(project).commonizeLibraries(
             konanHome = project.file(project.konanHome),
             outputCommonizerTarget = parameters.commonizerTarget,
-            inputLibraries = cinteropsForTarget.map { it.libraryFile.get() }.toSet(),
+            inputLibraries = cinteropsForTarget.map { it.libraryFile.get() }.filter { it.exists() }.toSet(),
             dependencyLibraries = cinteropsForTarget.flatMap { it.dependencies.files }.toSet() + nativeDistributionLibraries(parameters),
             outputDirectory = outputDirectory(parameters)
         )

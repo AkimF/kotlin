@@ -5,10 +5,8 @@
 
 package org.jetbrains.kotlin.commonizer.repository
 
-import org.jetbrains.kotlin.commonizer.CommonizerTarget
 import org.jetbrains.kotlin.commonizer.NativeLibraryLoader
 import org.jetbrains.kotlin.commonizer.konan.NativeLibrary
-import org.jetbrains.kotlin.commonizer.konanTargets
 import org.jetbrains.kotlin.konan.target.KonanTarget
 import java.io.File
 
@@ -24,8 +22,8 @@ internal class FilesRepository(
             .mapValues { (_, list) -> list.toSet() }
     }
 
-    override fun getLibraries(target: CommonizerTarget): Set<NativeLibrary> {
-        return librariesByTarget[target.konanTargets].orEmpty()
+    override fun getLibraries(targets: Set<KonanTarget>): Set<NativeLibrary> {
+        return librariesByTarget[targets].orEmpty()
     }
 }
 
