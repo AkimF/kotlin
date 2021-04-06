@@ -54,7 +54,7 @@ internal open class CInteropCommonizerTask : AbstractCInteropCommonizerTask() {
     @get:Classpath
     internal val nonHierarchicalNativeDistributionLibraries: Set<File>
         get() {
-            val commonizeNativeDistribution = project.commonizeNativeDistributionTask.get()
+            val commonizeNativeDistribution = project.commonizeNativeDistributionTask?.get() ?: return emptySet()
             return getCommonizationParameters().flatMapTo(mutableSetOf()) { parameters ->
                 parameters.commonizerTarget.withAllAncestors().flatMap { target ->
                     commonizeNativeDistribution.commonizerTargetOutputDirectories.flatMap { outputDirectory ->
@@ -116,7 +116,7 @@ internal open class CInteropCommonizerTask : AbstractCInteropCommonizerTask() {
     }
 
     private fun nativeDistributionLibraries(parameters: CInteropCommonizationParameters): Set<File> {
-        val task = project.commonizeNativeDistributionHierarchicalTask?.get() ?: return nonHierarchicalNativeDistributionLibraries
+        val task = project.commonizeNativeDistributionHierarchicallyTask?.get() ?: return nonHierarchicalNativeDistributionLibraries
 
         val rootTarget = task.rootCommonizerTargets
             .firstOrNull { rootTarget -> parameters.commonizerTarget in rootTarget } ?: return emptySet()
