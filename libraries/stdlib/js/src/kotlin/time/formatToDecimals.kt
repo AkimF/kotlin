@@ -13,7 +13,6 @@ internal actual fun formatToExactDecimals(value: Double, decimals: Int): String 
         value
     } else {
         val pow = 10.0.pow(decimals)
-        @Suppress("DEPRECATION", "DEPRECATION_ERROR")
         kotlin.js.Math.round(abs(value) * pow) / pow * sign(value)
     }
     return rounded.asDynamic().toFixed(decimals).unsafeCast<String>()

@@ -59,7 +59,6 @@ public actual fun Int.countOneBits(): Int {
  */
 @SinceKotlin("1.4")
 @WasExperimental(ExperimentalStdlibApi::class)
-@Suppress("DEPRECATION_ERROR")
 @kotlin.internal.InlineOnly
 public actual inline fun Int.countLeadingZeroBits(): Int = kotlin.js.Math.clz32(this)
 
