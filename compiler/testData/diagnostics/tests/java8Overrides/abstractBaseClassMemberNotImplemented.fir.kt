@@ -6,4 +6,8 @@ interface IRight {
     fun foo() {}
 }
 
-class CDerived : ALeft(), IRight
+<!ABSTRACT_CLASS_MEMBER_NOT_IMPLEMENTED!>class CDerived<!> : ALeft(), IRight
+
+abstract class CAbstract : ALeft(), IRight
+
+<!ABSTRACT_CLASS_MEMBER_NOT_IMPLEMENTED!>class CDerivedFromAbstract<!> : CAbstract()

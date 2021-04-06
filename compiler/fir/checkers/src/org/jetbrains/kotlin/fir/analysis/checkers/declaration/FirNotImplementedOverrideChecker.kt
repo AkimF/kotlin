@@ -63,11 +63,31 @@ object FirNotImplementedOverrideChecker : FirClassChecker() {
             return false
         }
 
+        fun FirIntersectionCallableSymbol.shouldBeImplemented(): Boolean {
+            // In Java 8, non-abstract intersection overrides having abstract symbol from base class
+            // still should be implemented in current class (even when they have default interface implementation)
+            if (intersections.none {
+                    val fir = (it.fir as FirCallableMemberDeclaration).unwrapFakeOverrides()
+                    fir.isAbstract && (fir.getContainingClass(context) as? FirRegularClass)?.classKind == ClassKind.CLASS
+                }
+            ) return false
+            // Exception from the rule above: interface implementation via delegation
+            if (intersections.any {
+                    val fir = (it.fir as FirCallableMemberDeclaration)
+                    fir.origin == FirDeclarationOrigin.Delegated && !fir.isAbstract
+                }
+            ) return false
+            return true
+        }
+
         fun FirCallableMemberDeclaration<*>.shouldBeImplemented(): Boolean {
-            if (!isAbstract) return false
             val containingClass = getContainingClass(context)
-            if (containingClass === declaration && origin == FirDeclarationOrigin.Source) return false
             if (containingClass is FirRegularClass && containingClass.isExpect) return false
+            if (!isAbstract) {
+                val symbol = symbol as? FirIntersectionCallableSymbol ?: return false
+                return symbol.shouldBeImplemented()
+            }
+            if (containingClass === declaration && origin == FirDeclarationOrigin.Source) return false
             return true
         }
 
