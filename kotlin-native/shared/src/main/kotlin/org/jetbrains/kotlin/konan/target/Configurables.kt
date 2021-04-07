@@ -52,7 +52,7 @@ interface Configurables : TargetableExternalStorage, RelocationModeFlags {
 
     val target: KonanTarget
     val targetTriple: TargetTriple
-        get() = targetString("quadruple")
+        get() = targetString("targetTriple")
                 ?.let(TargetTriple.Companion::fromString)
                 ?: error("quadruple for $target is not set.")
 

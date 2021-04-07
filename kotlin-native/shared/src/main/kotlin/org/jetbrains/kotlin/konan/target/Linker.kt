@@ -108,11 +108,11 @@ abstract class LinkerFlags(val configurables: Configurables) {
 class AndroidLinker(targetProperties: AndroidConfigurables)
     : LinkerFlags(targetProperties), AndroidConfigurables by targetProperties {
 
-    private val clangQuad = when (val targetString = targetProperties.targetTriple.toString()) {
+    private val clangTarget = when (val targetString = targetProperties.targetTriple.toString()) {
         "arm-linux-androideabi" -> "armv7a-linux-androideabi"
         else -> targetString
     }
-    private val prefix = "$absoluteTargetToolchain/bin/${clangQuad}${Android.API}"
+    private val prefix = "$absoluteTargetToolchain/bin/${clangTarget}${Android.API}"
     private val clang = if (HostManager.hostIsMingw) "$prefix-clang.cmd" else "$prefix-clang"
     private val ar = "$absoluteTargetToolchain/${targetProperties.targetTriple}/bin/ar"
 

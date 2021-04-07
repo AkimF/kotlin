@@ -51,7 +51,7 @@ fun create(project: Project): ExecutorService {
 
     return when {
         project.hasProperty("remote") -> sshExecutor(project)
-        testTarget == KonanTarget.WASM32 -> wasmExecutor(project)
+        configurables is WasmConfigurables -> wasmExecutor(project)
         configurables is ConfigurablesWithEmulator && testTarget != HostManager.host -> emulatorExecutor(project, testTarget)
         configurables.targetTriple.isSimulator -> simulator(project)
         supportsRunningTestsOnDevice(testTarget) -> deviceLauncher(project)

@@ -10,12 +10,12 @@ package org.jetbrains.kotlin.konan.target
  * Despite it's name, may contain more or less than 3 components.
  *
  * Example: arm64-apple-ios-simulator.
- *  arm64 - target hardware.
- *  apple - vendor.
- *  ios - operating system.
- *  simulator - environment.
+ * - arm64 - target hardware.
+ * - apple - vendor.
+ * - ios - operating system.
+ * - simulator - environment.
  *
- * @see https://clang.llvm.org/docs/CrossCompilation.html#target-triple.
+ * @see <a href="https://clang.llvm.org/docs/CrossCompilation.html#target-triple">Clang documentation for target triple</a>.
  */
 data class TargetTriple(
         val architecture: String,
