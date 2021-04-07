@@ -10,4 +10,4 @@ interface IRight {
 
 abstract class CAbstract : ALeft(), IRight
 
-class CDerivedFromAbstract : CAbstract()
+<!ABSTRACT_CLASS_MEMBER_NOT_IMPLEMENTED_WARNING!>class CDerivedFromAbstract<!> : CAbstract()

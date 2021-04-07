@@ -128,19 +128,37 @@ class OverrideResolver(
         }
     }
 
-    private inner class CollectErrorInformationForInheritedMembersStrategy(
-        private val klass: KtClassOrObject,
-        private val classDescriptor: ClassDescriptor
+    private inner class CollectWarningInformationForInheritedMembersStrategy(
+        klass: KtClassOrObject,
+        classDescriptor: ClassDescriptor
+    ) : CollectErrorInformationForInheritedMembersStrategy(klass, classDescriptor) {
+        constructor(delegateStrategy: CollectErrorInformationForInheritedMembersStrategy) :
+                this(delegateStrategy.klass, delegateStrategy.classDescriptor)
+
+        override fun doReportErrors() {
+            val canHaveAbstractMembers = classCanHaveAbstractFakeOverride(classDescriptor)
+            if (abstractInBaseClassNoImpl.isNotEmpty() && !canHaveAbstractMembers) {
+                trace.report(ABSTRACT_CLASS_MEMBER_NOT_IMPLEMENTED_WARNING.on(klass, klass, abstractInBaseClassNoImpl.first()))
+            }
+        }
+    }
+
+    private open inner class CollectErrorInformationForInheritedMembersStrategy(
+        val klass: KtClassOrObject,
+        val classDescriptor: ClassDescriptor
     ) : CheckInheritedSignaturesReportStrategy, CheckOverrideReportStrategy {
 
         private val abstractNoImpl = linkedSetOf<CallableMemberDescriptor>()
-        private val abstractInBaseClassNoImpl = linkedSetOf<CallableMemberDescriptor>()
+        protected val abstractInBaseClassNoImpl = linkedSetOf<CallableMemberDescriptor>()
         private val abstractInvisibleSuper = linkedSetOf<CallableMemberDescriptor>()
         private val multipleImplementations = linkedSetOf<CallableMemberDescriptor>()
         private val conflictingInterfaceMembers = linkedSetOf<CallableMemberDescriptor>()
         private val conflictingReturnTypes = linkedSetOf<CallableMemberDescriptor>()
 
         private val onceErrorsReported = SmartHashSet<DiagnosticFactoryWithPsiElement<*, *>>()
+
+        fun toDeprecationStrategy() =
+            CollectWarningInformationForInheritedMembersStrategy(this)
 
         override fun abstractMemberNotImplemented(descriptor: CallableMemberDescriptor) {
             abstractNoImpl.add(descriptor)
@@ -233,7 +251,7 @@ class OverrideResolver(
             }
         }
 
-        internal fun doReportErrors() {
+        open fun doReportErrors() {
             val canHaveAbstractMembers = classCanHaveAbstractFakeOverride(classDescriptor)
             if (abstractInBaseClassNoImpl.isNotEmpty() && !canHaveAbstractMembers) {
                 trace.report(ABSTRACT_CLASS_MEMBER_NOT_IMPLEMENTED.on(klass, klass, abstractInBaseClassNoImpl.first()))
@@ -664,7 +682,8 @@ class OverrideResolver(
 
         private fun checkMissingOverridesByJava8Restrictions(
             relevantDirectlyOverridden: Set<CallableMemberDescriptor>,
-            reportingStrategy: CheckInheritedSignaturesReportStrategy
+            reportingStrategy: CheckInheritedSignaturesReportStrategy,
+            onlyBaseClassMembers: Boolean = false
         ) {
             // Java 8:
             // -- class should implement an abstract member of a super-class,
@@ -683,6 +702,18 @@ class OverrideResolver(
                         overridesClassMember = true
                         if (overridden.modality === Modality.ABSTRACT) {
                             overridesAbstractInBaseClass = overridden
+                        } else if (overridden.kind == FAKE_OVERRIDE && containingDeclaration.modality === Modality.ABSTRACT) {
+                            val newReportingStrategy = if (reportingStrategy is CollectErrorInformationForInheritedMembersStrategy) {
+                                reportingStrategy.toDeprecationStrategy()
+                            } else reportingStrategy
+                            checkMissingOverridesByJava8Restrictions(
+                                overridden.overriddenDescriptors.toSet(),
+                                reportingStrategy = newReportingStrategy,
+                                onlyBaseClassMembers = true
+                            )
+                            if (newReportingStrategy is CollectWarningInformationForInheritedMembersStrategy) {
+                                newReportingStrategy.doReportErrors()
+                            }
                         }
                     } else if (containingDeclaration.kind == ClassKind.INTERFACE) {
                         overriddenInterfaceMembers.add(overridden)
@@ -696,7 +727,9 @@ class OverrideResolver(
             if (overridesAbstractInBaseClass != null) {
                 reportingStrategy.abstractBaseClassMemberNotImplemented(overridesAbstractInBaseClass)
             }
-            if (!overridesClassMember && overridesNonAbstractInterfaceMember && overriddenInterfaceMembers.size > 1) {
+            if (!onlyBaseClassMembers && !overridesClassMember &&
+                overridesNonAbstractInterfaceMember && overriddenInterfaceMembers.size > 1
+            ) {
                 for (member in overriddenInterfaceMembers) {
                     reportingStrategy.conflictingInterfaceMemberNotImplemented(member)
                 }
