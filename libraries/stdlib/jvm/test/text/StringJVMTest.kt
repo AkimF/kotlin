@@ -100,6 +100,7 @@ class StringJVMTest {
         testDecapitalize("ǳǳǳ", "ǲǳǳ")
     }
 
+    @Suppress("DEPRECATION")
     @Test fun capitalizeLocale() {
         fun testCapitalizeLocale(expected: String, string: String, locale: Locale) {
             assertEquals(expected, string.capitalize(locale))
