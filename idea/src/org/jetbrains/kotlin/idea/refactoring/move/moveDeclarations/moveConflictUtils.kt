@@ -416,7 +416,7 @@ class MoveConflictChecker(
                     render(container),
                     render(referencedElement)
                 )
-                conflicts.putValue(element, message.capitalize())
+                conflicts.putValue(element, message.replaceFirstChar(Char::uppercaseChar))
             }
         }
     }
@@ -494,7 +494,7 @@ class MoveConflictChecker(
                                 render(declaration),
                                 render(target)
                             )
-                            conflicts.putValue(refExpr, message.capitalize())
+                            conflicts.putValue(refExpr, message.replaceFirstChar(Char::uppercaseChar))
                         }
                     }
             }
@@ -527,7 +527,7 @@ class MoveConflictChecker(
                         render(container),
                         render(memberToCheck)
                     )
-                    conflicts.putValue(element, message.capitalize())
+                    conflicts.putValue(element, message.replaceFirstChar(Char::uppercaseChar))
                 }
             }
         }
