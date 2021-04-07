@@ -139,7 +139,7 @@ abstract class AbstractResolveModeComparisonTest : KotlinLightCodeInsightFixture
             val modes = mark.modes
             val modesRepresentation =
                 if (modes.size == RESOLVE_MODES.size) "All"
-                else modes.joinToString { it.toString().toLowerCase().capitalize() }
+                else modes.joinToString { it.toString().lowercase().capitalize() }
             "/*$modesRepresentation (${mark.ordinal})*/"
         }
         is Mark.NotAnalyzed -> {

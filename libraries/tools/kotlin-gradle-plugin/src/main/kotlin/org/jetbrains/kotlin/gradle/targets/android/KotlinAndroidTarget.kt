@@ -135,9 +135,9 @@ open class KotlinAndroidTarget(
                         sourcesJarArtifact(
                             compilation, compilation.disambiguateName(""),
                             dashSeparatedName(
-                                compilation.target.name.toLowerCase(),
-                                *flavorNames.map { it.toLowerCase() }.toTypedArray(),
-                                buildTypeName.takeIf { it != "release" }?.toLowerCase()
+                                compilation.target.name.lowercase(),
+                                *flavorNames.map { it.lowercase() }.toTypedArray(),
+                                buildTypeName.takeIf { it != "release" }?.lowercase()
                             ),
                             classifierPrefix = artifactClassifier
                         )
@@ -147,7 +147,7 @@ open class KotlinAndroidTarget(
                         defaultArtifactIdSuffix =
                             dashSeparatedName(
                                 (getFlavorNames(androidVariant) + getBuildTypeName(androidVariant).takeIf { it != "release" })
-                                    .map { it?.toLowerCase() }
+                                    .map { it?.lowercase() }
                             ).takeIf { it.isNotEmpty() }
                     }
                 }

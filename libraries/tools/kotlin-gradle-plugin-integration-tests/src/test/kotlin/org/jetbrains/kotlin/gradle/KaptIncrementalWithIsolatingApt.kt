@@ -262,7 +262,7 @@ class KaptIncrementalWithIsolatingApt : KaptIncrementalIT() {
     @Test
     fun testIsolatingWithOriginsInClasspath() {
         //https://youtrack.jetbrains.com/issue/KTI-405
-        if (System.getProperty("os.name")?.toLowerCase()?.contains("windows") == true) return
+        if (System.getProperty("os.name")?.lowercase()?.contains("windows") == true) return
 
         val project = Project(
             projectName = "kaptIncrementalWithParceler",

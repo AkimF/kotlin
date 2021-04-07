@@ -198,7 +198,7 @@ open class KotlinNativeTargetConfigurator<T : KotlinNativeTarget>(
         }
 
         fun configureFatFramework() {
-            val fatFrameworkConfigurationName = lowerCamelCaseName(binary.name, binary.target.konanTarget.family.name.toLowerCase(), "fat")
+            val fatFrameworkConfigurationName = lowerCamelCaseName(binary.name, binary.target.konanTarget.family.name.lowercase(), "fat")
             val fatFrameworkTaskName = "link${fatFrameworkConfigurationName.capitalize()}"
 
             val fatFrameworkTask = if (fatFrameworkTaskName in tasks.names) {
@@ -206,7 +206,7 @@ open class KotlinNativeTargetConfigurator<T : KotlinNativeTarget>(
             } else {
                 tasks.register(fatFrameworkTaskName, FatFrameworkTask::class.java) {
                     it.baseName = binary.baseName
-                    it.destinationDir = it.destinationDir.resolve(binary.buildType.name.toLowerCase())
+                    it.destinationDir = it.destinationDir.resolve(binary.buildType.name.lowercase())
                 }
             }
 

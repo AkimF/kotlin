@@ -28,7 +28,7 @@ import java.util.*
 
 object PackagePartClassUtils {
     @JvmStatic fun getPathHashCode(file: VirtualFile): Int =
-            file.path.toLowerCase().hashCode()
+            file.path.lowercase().hashCode()
 
     private val PART_CLASS_NAME_SUFFIX = "Kt"
 

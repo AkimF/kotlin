@@ -229,7 +229,7 @@ class MultiModuleJavaAnalysisCustomTest : KtUsefulTestCase() {
         assert(!ErrorUtils.isError(referencedDescriptor)) { "Error descriptor: $referencedDescriptor" }
 
         val descriptorName = referencedDescriptor.name.asString()
-        val expectedModuleName = "<${descriptorName.toLowerCase().first()}>"
+        val expectedModuleName = "<${descriptorName.lowercase().first()}>"
         val moduleName = referencedDescriptor.module.name.asString()
         Assert.assertEquals(
                 "Java class $descriptorName in $context should be in module $expectedModuleName, but instead was in $moduleName",

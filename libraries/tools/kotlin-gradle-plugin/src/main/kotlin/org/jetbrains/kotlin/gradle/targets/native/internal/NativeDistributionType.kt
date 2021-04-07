@@ -32,7 +32,7 @@ internal class NativeDistributionTypeProvider(private val project: Project) {
         lightType: NativeDistributionType,
         defaultType: NativeDistributionType
     ): NativeDistributionType {
-        val requestedByUser = propertiesProvider.nativeDistributionType?.toLowerCase()
+        val requestedByUser = propertiesProvider.nativeDistributionType?.lowercase()
         val deprecatedRestricted = propertiesProvider.nativeDeprecatedRestricted
 
         // A case when a deprecated property (kotlin.native.restrictedDistribution) is used to choose the restricted distribution.

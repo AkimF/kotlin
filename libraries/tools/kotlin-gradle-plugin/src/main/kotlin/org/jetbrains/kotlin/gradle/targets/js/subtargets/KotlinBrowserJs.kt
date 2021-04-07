@@ -139,7 +139,7 @@ open class KotlinBrowserJs @Inject constructor(target: KotlinJsTarget) :
                         { task.bin = "webpack-dev-server/bin/webpack-dev-server.js" }
                     )()
 
-                    task.description = "start ${type.name.toLowerCase()} webpack dev server"
+                    task.description = "start ${type.name.lowercase()} webpack dev server"
 
                     task.devServer = KotlinWebpackConfig.DevServer(
                         open = true,
@@ -205,7 +205,7 @@ open class KotlinBrowserJs @Inject constructor(target: KotlinJsTarget) :
                         distributeResourcesTask
                     )
 
-                    task.description = "build webpack ${type.name.toLowerCase()} bundle"
+                    task.description = "build webpack ${type.name.lowercase()} bundle"
                     task._destinationDirectory = distribution.directory
 
                     task.commonConfigure(

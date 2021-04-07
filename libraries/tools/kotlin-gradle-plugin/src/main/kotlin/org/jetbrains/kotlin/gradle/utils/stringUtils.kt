@@ -24,7 +24,7 @@ internal fun dashSeparatedName(vararg nameParts: String?): String {
 internal fun String.decamelize(): String {
     return replace(upperCaseRegex) {
         val (first) = it.destructured
-        "-${first.toLowerCase()}"
+        "-${first.lowercase()}"
     }
 }
 

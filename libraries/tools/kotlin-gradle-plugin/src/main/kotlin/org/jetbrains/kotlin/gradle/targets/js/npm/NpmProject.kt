@@ -130,14 +130,14 @@ open class NpmProject(@Transient val compilation: KotlinJsCompilation) {
             project.name
         } else null
 
-        val targetName = if (target.name.isNotEmpty() && target.name.toLowerCase() != "js") {
+        val targetName = if (target.name.isNotEmpty() && target.name.lowercase() != "js") {
             target.name
                 .replace(DECAMELIZE_REGEX) {
                     it.groupValues
                         .drop(1)
                         .joinToString(prefix = "-", separator = "-")
                 }
-                .toLowerCase()
+                .lowercase()
         } else null
 
         return sequenceOf(

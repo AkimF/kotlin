@@ -65,7 +65,7 @@ enum class CompilerSystemProperties(val property: String) {
 val isWindows: Boolean
     get() = CompilerSystemProperties.OS_NAME.value!!.toLowerCase(Locale.ENGLISH).startsWith("windows")
 
-fun String?.toBooleanLenient(): Boolean? = when (this?.toLowerCase()) {
+fun String?.toBooleanLenient(): Boolean? = when (this?.lowercase()) {
     null -> false
     in listOf("", "yes", "true", "on", "y") -> true
     in listOf("no", "false", "off", "n") -> false

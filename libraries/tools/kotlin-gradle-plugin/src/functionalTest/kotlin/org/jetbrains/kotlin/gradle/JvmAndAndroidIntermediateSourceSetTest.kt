@@ -118,7 +118,7 @@ class JvmAndAndroidIntermediateSourceSetTest {
         assertTrue(kotlinComponents.isNotEmpty(), "Expected at least one KotlinComponent to be present")
 
         kotlinComponents.forEach { component ->
-            val isReleaseComponent = "release" in component.name.toLowerCase()
+            val isReleaseComponent = "release" in component.name.lowercase()
             if (isReleaseComponent) {
                 assertTrue(component.publishable, "Expected release component to be marked as publishable")
             } else {

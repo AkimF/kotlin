@@ -32,7 +32,7 @@ class LiteralConversion(context: NewJ2kConverterContext) : RecursiveApplicableCo
     }
 
     private fun cannotConvertLiteralMessage(element: JKLiteralExpression): String {
-        val literalType = element.type.toString().toLowerCase()
+        val literalType = element.type.toString().lowercase()
         val literalValue = element.literal
         return "Could not convert $literalType literal '$literalValue' to Kotlin"
     }

@@ -98,7 +98,7 @@ private fun String.isLowerCaseCharAt(index: Int, asciiOnly: Boolean): Boolean {
 }
 
 private fun toLowerCase(string: String, asciiOnly: Boolean): String {
-    return if (asciiOnly) string.toLowerCaseAsciiOnly() else string.toLowerCase()
+    return if (asciiOnly) string.toLowerCaseAsciiOnly() else string.lowercase()
 }
 
 private fun toUpperCase(string: String, asciiOnly: Boolean): String {

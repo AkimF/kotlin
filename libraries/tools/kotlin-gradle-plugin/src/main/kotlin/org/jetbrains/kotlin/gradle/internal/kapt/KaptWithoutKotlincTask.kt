@@ -142,7 +142,7 @@ abstract class KaptWithoutKotlincTask @Inject constructor(
 
         //TODO for gradle < 6.5
         val isolationModeStr = getValue("kapt.workers.isolation") ?: "none"
-        val isolationMode = when (isolationModeStr.toLowerCase()) {
+        val isolationMode = when (isolationModeStr.lowercase()) {
             "process" -> IsolationMode.PROCESS
             "none" -> IsolationMode.NONE
             else -> IsolationMode.NONE

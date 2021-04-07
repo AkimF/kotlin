@@ -44,7 +44,7 @@ open class KotlinNodeJsIr @Inject constructor(target: KotlinJsIrTarget) :
 
     private fun configureRun(binary: JsIrBinary) {
         val binaryRunName = disambiguateCamelCased(
-            binary.mode.name.toLowerCase(),
+            binary.mode.name.lowercase(),
             RUN_TASK_NAME
         )
         locateOrRegisterRunTask(binary, binaryRunName)

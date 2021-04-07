@@ -171,7 +171,7 @@ internal fun Project.nativeDistributionCommonizerOutputDirectory(targets: KonanT
     val discriminator = buildString {
         orderedTargetNames.joinTo(this, separator = "-")
         append("-")
-        append(kotlinVersion.toLowerCase().base64)
+        append(kotlinVersion.lowercase().base64)
     }
     return project.file(konanHome)
         .resolve(KONAN_DISTRIBUTION_KLIB_DIR)

@@ -57,7 +57,7 @@ internal fun loadCompilerVersion(compilerClasspath: List<File>): String {
     try {
         val versionClassFileName = KotlinCompilerVersion::class.java.name.replace('.', '/') + ".class"
         for (cpFile in compilerClasspath) {
-            if (cpFile.isFile && cpFile.extension.toLowerCase() == "jar") {
+            if (cpFile.isFile && cpFile.extension.lowercase() == "jar") {
                 ZipFile(cpFile).use { jar ->
                     val versionFileEntry = jar.getEntry(KotlinCompilerVersion.VERSION_FILE_PATH)
                     if (versionFileEntry != null) {

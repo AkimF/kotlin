@@ -386,7 +386,7 @@ abstract class KotlinOnlyTargetConfigurator<KotlinCompilationType : KotlinCompil
         target.compilations.all { compilation ->
             buildCompilationProcessor(compilation).run()
             if (compilation.isMain()) {
-                sourcesJarTask(compilation, target.targetName, target.targetName.toLowerCase())
+                sourcesJarTask(compilation, target.targetName, target.targetName.lowercase())
             }
         }
     }
@@ -410,7 +410,7 @@ abstract class KotlinOnlyTargetConfigurator<KotlinCompilationType : KotlinCompil
 
         target.disambiguationClassifier?.let { classifier ->
             task.configure { taskInstance ->
-                taskInstance.archiveAppendix.set(classifier.toLowerCase())
+                taskInstance.archiveAppendix.set(classifier.lowercase())
             }
         }
 

@@ -14,7 +14,7 @@ internal object NodeJsPlatform {
     const val SUNOS = "sunos"
 
     val name: String = run {
-        val name = property("os.name").toLowerCase()
+        val name = property("os.name").lowercase()
         when {
             name.contains("windows") -> WIN
             name.contains("mac") -> DARWIN
@@ -30,7 +30,7 @@ internal object NodeJsPlatform {
     const val ARM64 = "arm64"
 
     val architecture: String = run {
-        val arch = property("os.arch").toLowerCase()
+        val arch = property("os.arch").lowercase()
         when {
             arch.contains("64") -> X64
             arch == "arm" -> {

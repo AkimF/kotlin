@@ -72,7 +72,7 @@ class KaptModelBuilderService : AbstractKotlinGradleModelBuilder() {
                 }
 
                 val sourceSetName = compileTask.getSourceSetName()
-                val isTest = sourceSetName.toLowerCase().endsWith("test")
+                val isTest = sourceSetName.lowercase().endsWith("test")
 
                 val kaptGeneratedSourcesDir = getKaptDirectory("getKaptGeneratedSourcesDir", project, sourceSetName)
                 val kaptGeneratedClassesDir = getKaptDirectory("getKaptGeneratedClassesDir", project, sourceSetName)
