@@ -118,7 +118,7 @@ fun String.decapitalizeAsciiOnly(): String {
     if (isEmpty()) return this
     val c = this[0]
     return if (c in 'A'..'Z')
-        c.toLowerCase() + substring(1)
+        c.lowercaseChar() + substring(1)
     else
         this
 }
@@ -126,7 +126,7 @@ fun String.decapitalizeAsciiOnly(): String {
 fun String.toLowerCaseAsciiOnly(): String {
     val builder = StringBuilder(length)
     for (c in this) {
-        builder.append(if (c in 'A'..'Z') c.toLowerCase() else c)
+        builder.append(if (c in 'A'..'Z') c.lowercaseChar() else c)
     }
     return builder.toString()
 }

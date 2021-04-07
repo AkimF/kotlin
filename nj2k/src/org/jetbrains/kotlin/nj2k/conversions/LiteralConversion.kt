@@ -116,7 +116,7 @@ class LiteralConversion(context: NewJ2kConverterContext) : RecursiveApplicableCo
     }
 
     private fun String.convertOctalLiteral(isLongLiteral: Boolean): String {
-        if (!startsWith("0") || length == 1 || get(1).toLowerCase() == 'x') return this
+        if (!startsWith("0") || length == 1 || get(1).lowercaseChar() == 'x') return this
         val value = BigInteger(drop(1), 8)
         return if (isLongLiteral) value.toLong().toString(10) else value.toInt().toString(10)
     }
