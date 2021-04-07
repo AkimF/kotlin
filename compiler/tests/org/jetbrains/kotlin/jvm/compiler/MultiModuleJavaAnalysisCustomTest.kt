@@ -86,7 +86,7 @@ class MultiModuleJavaAnalysisCustomTest : KtUsefulTestCase() {
         val platformParameters = JvmPlatformParameters(
             packagePartProviderFactory = { PackagePartProvider.Empty },
             moduleByJavaClass = { javaClass ->
-                val moduleName = javaClass.name.asString().toLowerCase().first().toString()
+                val moduleName = javaClass.name.asString().lowercase().first().toString()
                 modules.first { it._name == moduleName }
             },
             useBuiltinsProviderForModule = { false }
