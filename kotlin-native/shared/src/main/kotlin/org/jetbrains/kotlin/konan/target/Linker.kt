@@ -109,7 +109,7 @@ class AndroidLinker(targetProperties: AndroidConfigurables)
     : LinkerFlags(targetProperties), AndroidConfigurables by targetProperties {
 
     private val clangTarget = when (val targetString = targetProperties.targetTriple.toString()) {
-        "arm-linux-androideabi" -> "armv7a-linux-androideabi"
+        "arm-unknown-linux-androideabi" -> "armv7a-unknown-linux-androideabi"
         else -> targetString
     }
     private val prefix = "$absoluteTargetToolchain/bin/${clangTarget}${Android.API}"

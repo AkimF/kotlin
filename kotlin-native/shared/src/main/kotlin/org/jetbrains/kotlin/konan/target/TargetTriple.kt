@@ -26,6 +26,8 @@ data class TargetTriple(
     companion object {
         /**
          * Parse <arch>-<vendor>-<os>-<environment?> [tripleString].
+         *
+         * TODO: Support normalization like LLVM's Triple::normalize.
          */
         fun fromString(tripleString: String): TargetTriple {
             val components = tripleString.split('-')
