@@ -125,6 +125,7 @@ class StringJVMTest {
 
     @Test fun decapitalizeLocale() {
         fun testDecapitalizeLocale(expected: String, string: String, locale: Locale) {
+            @Suppress("DEPRECATION")
             assertEquals(expected, string.decapitalize(locale))
             assertEquals(expected, string.replaceFirstChar { it.lowercase(locale) })
         }
