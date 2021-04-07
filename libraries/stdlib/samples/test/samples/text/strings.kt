@@ -12,6 +12,7 @@ class Strings {
         assertPrints("Abcd".capitalize(), "Abcd")
     }
 
+    @Suppress("DEPRECATION")
     @Sample
     fun decapitalize() {
         assertPrints("abcd".decapitalize(), "abcd")

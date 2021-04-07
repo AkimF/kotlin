@@ -86,7 +86,7 @@ class KotlinJsIrSingleTargetPreset(
         return if (mixedMode!!) {
             super.provideTargetDisambiguationClassifier(target)
                 ?.removePrefix(target.name.removeJsCompilerSuffix(KotlinJsCompilerType.IR))
-                ?.decapitalize()
+                ?.replaceFirstChar(Char::lowercaseChar)
         } else {
             null
         }

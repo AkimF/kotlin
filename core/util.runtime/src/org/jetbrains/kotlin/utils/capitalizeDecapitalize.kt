@@ -28,7 +28,7 @@ fun String.decapitalizeSmartForCompiler(asciiOnly: Boolean = false): String {
     if (isEmpty() || !isUpperCaseCharAt(0, asciiOnly)) return this
 
     if (length == 1 || !isUpperCaseCharAt(1, asciiOnly)) {
-        return if (asciiOnly) decapitalizeAsciiOnly() else decapitalize()
+        return if (asciiOnly) decapitalizeAsciiOnly() else replaceFirstChar(Char::lowercaseChar)
     }
 
     val secondWordStart = (indices.firstOrNull { !isUpperCaseCharAt(it, asciiOnly) } ?: return toLowerCase(this, asciiOnly)) - 1

@@ -311,7 +311,7 @@ private class TestDataBuilder {
                             .replace(KEYWORD_MARKER, keywordWithEscapeIfNeed)
 
 
-                    val fileName = "${suite.name.decapitalize()}${case.name.capitalize()}${keyword.capitalize()}.kt"
+                    val fileName = "${suite.name.replaceFirstChar { it.lowercaseChar() }}${case.name.capitalize()}${keyword.capitalize()}.kt"
 
                     val testDataFile = File(testDataDirPath + "/" + fileName)
 

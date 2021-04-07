@@ -160,7 +160,7 @@ class Generator(
         get() = "val $fieldName: $setType"
 
     private val Alias.fieldName: String
-        get() = removePrefix("Fir").decapitalize() + "s"
+        get() = removePrefix("Fir").replaceFirstChar(Char::lowercaseChar) + "s"
 
     private val Alias.allFieldName: String
         get() = "all${fieldName.capitalize()}"

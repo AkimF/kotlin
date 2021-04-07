@@ -90,6 +90,7 @@ class StringJVMTest {
 
     @Test fun decapitalize() {
         fun testDecapitalize(expected: String, string: String) {
+            @Suppress("DEPRECATION")
             assertEquals(expected, string.decapitalize())
             assertEquals(expected, string.replaceFirstChar { it.lowercase(Locale.getDefault()) })
         }

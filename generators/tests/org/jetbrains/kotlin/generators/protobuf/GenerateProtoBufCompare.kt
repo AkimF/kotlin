@@ -501,7 +501,7 @@ class GenerateProtoBufCompare {
     }
 
     private val String.javaName: String
-        get() = this.split("_").joinToString("") { it.capitalize() }.decapitalize()
+        get() = this.split("_").joinToString("") { it.capitalize() }.replaceFirstChar { it.lowercaseChar() }
 }
 
 private fun Printer.printlnMultiline(string: String) {

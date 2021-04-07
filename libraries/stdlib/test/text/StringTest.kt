@@ -301,6 +301,7 @@ class StringTest {
 
     @Test fun decapitalize() {
         fun testDecapitalize(expected: String, string: String) {
+            @Suppress("DEPRECATION")
             assertEquals(expected, string.decapitalize())
             assertEquals(expected, string.replaceFirstChar { it.lowercase() })
         }
