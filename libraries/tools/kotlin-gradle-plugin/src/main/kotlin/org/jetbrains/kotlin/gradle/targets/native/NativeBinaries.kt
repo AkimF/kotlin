@@ -263,7 +263,7 @@ class Framework(
      *     marker - Embed placeholder LLVM IR data as a marker.
      *              Has the same effect as the -Xembed-bitcode-marker command line option.
      */
-    fun embedBitcode(mode: String) = embedBitcode(org.jetbrains.kotlin.gradle.plugin.mpp.BitcodeEmbeddingMode.valueOf(mode.uppercase()))
+    fun embedBitcode(mode: String) = embedBitcode(org.jetbrains.kotlin.gradle.plugin.mpp.BitcodeEmbeddingMode.valueOf(mode.toUpperCase()))
 
     /**
      * Specifies if the framework is linked as a static library (false by default).

@@ -43,7 +43,7 @@ abstract class AbstractKotlinNativeBinaryContainer : DomainObjectSet<NativeBinar
 
     /** Returns an executable with the given [namePrefix] and the given build type. Throws an exception if there is no such binary.*/
     fun getExecutable(namePrefix: String, buildType: String): Executable =
-        getExecutable(namePrefix, NativeBuildType.valueOf(buildType.uppercase()))
+        getExecutable(namePrefix, NativeBuildType.valueOf(buildType.toUpperCase()))
 
     /** Returns an executable with the empty name prefix and the given build type. Throws an exception if there is no such binary.*/
     fun getExecutable(buildType: NativeBuildType): Executable = getExecutable("", buildType)
@@ -56,7 +56,7 @@ abstract class AbstractKotlinNativeBinaryContainer : DomainObjectSet<NativeBinar
 
     /** Returns an executable with the given [namePrefix] and the given build type. Returns null if there is no such binary. */
     fun findExecutable(namePrefix: String, buildType: String): Executable? =
-        findExecutable(namePrefix, NativeBuildType.valueOf(buildType.uppercase()))
+        findExecutable(namePrefix, NativeBuildType.valueOf(buildType.toUpperCase()))
 
     /** Returns an executable with the empty name prefix and the given build type. Returns null if there is no such binary. */
     fun findExecutable(buildType: NativeBuildType): Executable? = findExecutable("", buildType)
@@ -69,7 +69,7 @@ abstract class AbstractKotlinNativeBinaryContainer : DomainObjectSet<NativeBinar
 
     /** Returns a static library with the given [namePrefix] and the given build type. Throws an exception if there is no such binary.*/
     fun getStaticLib(namePrefix: String, buildType: String): StaticLibrary =
-        getStaticLib(namePrefix, NativeBuildType.valueOf(buildType.uppercase()))
+        getStaticLib(namePrefix, NativeBuildType.valueOf(buildType.toUpperCase()))
 
     /** Returns a static library with the empty name prefix and the given build type. Throws an exception if there is no such binary.*/
     fun getStaticLib(buildType: NativeBuildType): StaticLibrary = getStaticLib("", buildType)
@@ -82,7 +82,7 @@ abstract class AbstractKotlinNativeBinaryContainer : DomainObjectSet<NativeBinar
 
     /** Returns a static library with the given [namePrefix] and the given build type. Returns null if there is no such binary. */
     fun findStaticLib(namePrefix: String, buildType: String): StaticLibrary? =
-        findStaticLib(namePrefix, NativeBuildType.valueOf(buildType.uppercase()))
+        findStaticLib(namePrefix, NativeBuildType.valueOf(buildType.toUpperCase()))
 
     /** Returns a static library with the empty name prefix and the given build type. Returns null if there is no such binary. */
     fun findStaticLib(buildType: NativeBuildType): StaticLibrary? = findStaticLib("", buildType)
@@ -95,7 +95,7 @@ abstract class AbstractKotlinNativeBinaryContainer : DomainObjectSet<NativeBinar
 
     /** Returns a shared library with the given [namePrefix] and the given build type. Throws an exception if there is no such binary.*/
     fun getSharedLib(namePrefix: String, buildType: String): SharedLibrary =
-        getSharedLib(namePrefix, NativeBuildType.valueOf(buildType.uppercase()))
+        getSharedLib(namePrefix, NativeBuildType.valueOf(buildType.toUpperCase()))
 
     /** Returns a shared library with the empty name prefix and the given build type. Throws an exception if there is no such binary.*/
     fun getSharedLib(buildType: NativeBuildType): SharedLibrary = getSharedLib("", buildType)
@@ -108,7 +108,7 @@ abstract class AbstractKotlinNativeBinaryContainer : DomainObjectSet<NativeBinar
 
     /** Returns a shared library with the given [namePrefix] and the given build type. Returns null if there is no such binary. */
     fun findSharedLib(namePrefix: String, buildType: String): SharedLibrary? =
-        findSharedLib(namePrefix, NativeBuildType.valueOf(buildType.uppercase()))
+        findSharedLib(namePrefix, NativeBuildType.valueOf(buildType.toUpperCase()))
 
     /** Returns a shared library with the empty name prefix and the given build type. Returns null if there is no such binary. */
     fun findSharedLib(buildType: NativeBuildType): SharedLibrary? = findSharedLib("", buildType)
@@ -121,7 +121,7 @@ abstract class AbstractKotlinNativeBinaryContainer : DomainObjectSet<NativeBinar
 
     /** Returns an Objective-C framework with the given [namePrefix] and the given build type. Throws an exception if there is no such binary.*/
     fun getFramework(namePrefix: String, buildType: String): Framework =
-        getFramework(namePrefix, NativeBuildType.valueOf(buildType.uppercase()))
+        getFramework(namePrefix, NativeBuildType.valueOf(buildType.toUpperCase()))
 
     /** Returns an Objective-C framework with the empty name prefix and the given build type. Throws an exception if there is no such binary.*/
     fun getFramework(buildType: NativeBuildType): Framework = getFramework("", buildType)
@@ -134,7 +134,7 @@ abstract class AbstractKotlinNativeBinaryContainer : DomainObjectSet<NativeBinar
 
     /** Returns an Objective-C framework with the given [namePrefix] and the given build type. Returns null if there is no such binary. */
     fun findFramework(namePrefix: String, buildType: String): Framework? =
-        findFramework(namePrefix, NativeBuildType.valueOf(buildType.uppercase()))
+        findFramework(namePrefix, NativeBuildType.valueOf(buildType.toUpperCase()))
 
     /** Returns an Objective-C framework with the empty name prefix and the given build type. Returns null if there is no such binary. */
     fun findFramework(buildType: NativeBuildType): Framework? = findFramework("", buildType)
@@ -147,7 +147,7 @@ abstract class AbstractKotlinNativeBinaryContainer : DomainObjectSet<NativeBinar
 
     /** Returns a test executable with the given [namePrefix] and the given build type. Throws an exception if there is no such binary.*/
     fun getTest(namePrefix: String, buildType: String): TestExecutable =
-        getTest(namePrefix, NativeBuildType.valueOf(buildType.uppercase()))
+        getTest(namePrefix, NativeBuildType.valueOf(buildType.toUpperCase()))
 
     /** Returns a test executable with the empty name prefix and the given build type. Throws an exception if there is no such binary.*/
     fun getTest(buildType: NativeBuildType): TestExecutable = getTest("", buildType)
@@ -160,7 +160,7 @@ abstract class AbstractKotlinNativeBinaryContainer : DomainObjectSet<NativeBinar
 
     /** Returns a test executable with the given [namePrefix] and the given build type. Returns null if there is no such binary. */
     fun findTest(namePrefix: String, buildType: String): TestExecutable? =
-        findTest(namePrefix, NativeBuildType.valueOf(buildType.uppercase()))
+        findTest(namePrefix, NativeBuildType.valueOf(buildType.toUpperCase()))
 
     /** Returns a test executable with the empty name prefix and the given build type. Returns null if there is no such binary. */
     fun findTest(buildType: NativeBuildType): TestExecutable? = findTest("", buildType)
