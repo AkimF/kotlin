@@ -165,8 +165,8 @@ class MultiModuleJavaAnalysisCustomTest : KtUsefulTestCase() {
             module ->
             val moduleDescriptor = resolverForProject.descriptorForModule(module)
 
-            checkClassInPackage(moduleDescriptor, "test", "Kotlin${module._name.toUpperCase()}")
-            checkClassInPackage(moduleDescriptor, "custom", "${module._name.toUpperCase()}Class")
+            checkClassInPackage(moduleDescriptor, "test", "Kotlin${module._name.uppercase()}")
+            checkClassInPackage(moduleDescriptor, "custom", "${module._name.uppercase()}Class")
         }
     }
 

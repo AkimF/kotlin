@@ -102,7 +102,7 @@ private fun toLowerCase(string: String, asciiOnly: Boolean): String {
 }
 
 private fun toUpperCase(string: String, asciiOnly: Boolean): String {
-    return if (asciiOnly) string.toUpperCaseAsciiOnly() else string.toUpperCase()
+    return if (asciiOnly) string.toUpperCaseAsciiOnly() else string.uppercase()
 }
 
 fun String.capitalizeAsciiOnly(): String {

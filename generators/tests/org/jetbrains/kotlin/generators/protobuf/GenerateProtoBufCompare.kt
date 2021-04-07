@@ -89,7 +89,7 @@ class GenerateProtoBufCompare {
             }
             return (extensionPrefix + fieldDescriptor.name.javaName + (if (fieldDescriptor.isRepeated) "List" else ""))
                 .replace("[A-Z]".toRegex()) { "_" + it.value }
-                .toUpperCase()
+                .uppercase()
         }
     }
 
