@@ -178,8 +178,8 @@ constructor(
         ) =
             lowerCamelCaseName(
                 if (compilation.isMain()) null else compilation.name,
-                mode.name.lowercase(),
-                jsBinaryType?.name?.lowercase()
+                mode.name.toLowerCase(),
+                jsBinaryType?.name?.toLowerCase()
             )
     }
 }

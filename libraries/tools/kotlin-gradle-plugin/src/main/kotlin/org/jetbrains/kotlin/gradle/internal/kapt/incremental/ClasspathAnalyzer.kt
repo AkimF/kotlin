@@ -70,7 +70,7 @@ private fun visitDirectory(directory: File): ClasspathEntryData {
 
     directory.walk().filter {
         it.extension == "class"
-                && !it.relativeTo(directory).toString().lowercase().startsWith("meta-inf")
+                && !it.relativeTo(directory).toString().toLowerCase().startsWith("meta-inf")
                 && it.name != MODULE_INFO
     }.forEach {
         val internalName = it.relativeTo(directory).invariantSeparatorsPath.dropLast(".class".length)
@@ -91,7 +91,7 @@ private fun visitJar(jar: File): ClasspathEntryData {
             val entry = entries.nextElement()
 
             if (entry.name.endsWith("class")
-                && !entry.name.lowercase().startsWith("meta-inf")
+                && !entry.name.toLowerCase().startsWith("meta-inf")
                 && entry.name != MODULE_INFO
             ) {
                 BufferedInputStream(zipFile.getInputStream(entry)).use { inputStream ->

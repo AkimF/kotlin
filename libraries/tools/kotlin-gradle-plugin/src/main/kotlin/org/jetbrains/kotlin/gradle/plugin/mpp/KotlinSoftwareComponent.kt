@@ -86,7 +86,7 @@ abstract class KotlinSoftwareComponent(
 
 
     val sourcesArtifacts: Set<PublishArtifact> by lazy {
-        val sourcesJarTask = sourcesJarTask(project, lazy { project.kotlinExtension.sourceSets.toSet() }, null, name.lowercase())
+        val sourcesJarTask = sourcesJarTask(project, lazy { project.kotlinExtension.sourceSets.toSet() }, null, name.toLowerCase())
         val sourcesJarArtifact = project.artifacts.add(Dependency.ARCHIVES_CONFIGURATION, sourcesJarTask) { sourcesJarArtifact ->
             sourcesJarArtifact.classifier = "sources"
         }

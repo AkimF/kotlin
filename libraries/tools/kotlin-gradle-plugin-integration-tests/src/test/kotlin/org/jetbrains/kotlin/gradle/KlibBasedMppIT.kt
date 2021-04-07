@@ -223,7 +223,7 @@ class KlibBasedMppIT : BaseGradleIT() {
         }
 
         hostSpecificTargets.forEach { targetName ->
-            val moduleName = "$dependencyModuleName-${targetName.lowercase()}"
+            val moduleName = "$dependencyModuleName-${targetName.toLowerCase()}"
             ZipFile(groupDir.resolve("$moduleName/1.0/$moduleName-1.0-metadata.jar")).use { metadataJar ->
                 assertTrue { metadataJar.entries().asSequence().any { it.name.startsWith(hostSpecificSourceSet) } }
                 assertTrue { metadataJar.entries().asSequence().none { it.name.startsWith("commonMain") } }

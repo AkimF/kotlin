@@ -297,7 +297,7 @@ abstract class AbstractKotlinNativeCompile<T : KotlinCommonToolOptions, K : Abst
         addKey("-ea", debuggable)
 
         addArg("-target", konanTarget.name)
-        addArg("-p", outputKind.name.lowercase())
+        addArg("-p", outputKind.name.toLowerCase())
 
         if (compilationIsShared) {
             add("-Xexpect-actual-linker")

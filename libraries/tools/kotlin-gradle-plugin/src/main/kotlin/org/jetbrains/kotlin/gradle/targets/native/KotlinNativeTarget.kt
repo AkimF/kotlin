@@ -61,7 +61,7 @@ open class KotlinNativeTarget @Inject constructor(
 
             if (hostSpecificSourceSets.isNotEmpty()) {
                 val hostSpecificMetadataJar = project.locateOrRegisterTask<Jar>(hostSpecificMetadataJarTaskName) { metadataJar ->
-                    metadataJar.archiveAppendix.set(project.provider { disambiguationClassifier.orEmpty().lowercase() })
+                    metadataJar.archiveAppendix.set(project.provider { disambiguationClassifier.orEmpty().toLowerCase() })
                     metadataJar.archiveClassifier.set("metadata")
 
                     val publishable = this@KotlinNativeTarget.publishable
@@ -99,7 +99,7 @@ open class KotlinNativeTarget @Inject constructor(
         val result = createKotlinVariant(targetName, mainCompilation, mutableUsageContexts)
 
         result.sourcesArtifacts = setOf(
-            sourcesJarArtifact(mainCompilation, targetName, dashSeparatedName(targetName.lowercase()))
+            sourcesJarArtifact(mainCompilation, targetName, dashSeparatedName(targetName.toLowerCase()))
         )
 
         setOf(result)

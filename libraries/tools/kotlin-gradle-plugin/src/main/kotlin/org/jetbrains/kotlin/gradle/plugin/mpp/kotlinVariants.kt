@@ -31,7 +31,7 @@ internal fun getCoordinatesFromPublicationDelegateAndProject(
     object : ModuleVersionIdentifier {
         private val moduleName: String
             get() =
-                publication?.artifactId ?: dashSeparatedName(project.name, target?.name?.lowercase())
+                publication?.artifactId ?: dashSeparatedName(project.name, target?.name?.toLowerCase())
 
         private val moduleGroup: String
             get() =
@@ -77,7 +77,7 @@ open class KotlinVariant(
     internal var defaultArtifactIdSuffix: String? = null
 
     override val defaultArtifactId: String
-        get() = dashSeparatedName(target.project.name, artifactTargetName.lowercase(), defaultArtifactIdSuffix)
+        get() = dashSeparatedName(target.project.name, artifactTargetName.toLowerCase(), defaultArtifactIdSuffix)
 
     override var publicationDelegate: MavenPublication? = null
 }
@@ -113,8 +113,8 @@ class JointAndroidKotlinTargetComponent(
     override val defaultArtifactId: String =
         dashSeparatedName(
             target.project.name,
-            target.targetName.lowercase(),
-            *flavorNames.map { it.lowercase() }.toTypedArray()
+            target.targetName.toLowerCase(),
+            *flavorNames.map { it.toLowerCase() }.toTypedArray()
         )
 
     override var publicationDelegate: MavenPublication? = null

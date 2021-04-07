@@ -72,7 +72,7 @@ object ServiceLoaderLite {
 
         return when {
             file.isDirectory -> findImplementationsInDirectory(classIdentifier, file)
-            file.isFile && file.extension.lowercase() == "jar" -> findImplementationsInJar(classIdentifier, file)
+            file.isFile && file.extension.toLowerCase() == "jar" -> findImplementationsInJar(classIdentifier, file)
             else -> emptySet()
         }
     }

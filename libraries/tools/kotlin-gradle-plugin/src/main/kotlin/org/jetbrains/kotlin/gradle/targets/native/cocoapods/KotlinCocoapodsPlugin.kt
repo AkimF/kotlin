@@ -59,7 +59,7 @@ internal class CocoapodsBuildDirs(val project: Project) {
     fun externalSources(fileName: String) = externalSources.resolve(fileName)
 
     fun fatFramework(buildType: String) =
-        root.resolve("fat-frameworks/${buildType.lowercase()}")
+        root.resolve("fat-frameworks/${buildType.toLowerCase()}")
 }
 
 internal fun String.asValidFrameworkName() = replace('-', '_')

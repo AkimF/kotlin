@@ -416,7 +416,7 @@ open class PodGenTask : DefaultTask() {
                         |Tip: try to configure deployment_target for ALL targets as follows:
                         |cocoapods {
                         |   ...
-                        |   ${family.name.lowercase()}.deploymentTarget = "..."
+                        |   ${family.name.toLowerCase()}.deploymentTarget = "..."
                         |   ...
                         |}
                     """.trimMargin()

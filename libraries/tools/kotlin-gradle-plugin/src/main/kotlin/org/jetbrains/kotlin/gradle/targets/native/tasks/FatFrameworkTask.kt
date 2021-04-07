@@ -145,7 +145,7 @@ open class FatFrameworkTask : DefaultTask() {
 
             require(!archToFramework.containsKey(arch)) {
                 val alreadyAdded = archToFramework.getValue(arch)
-                "This fat framework already has a binary for architecture `${arch.name.lowercase()}` " +
+                "This fat framework already has a binary for architecture `${arch.name.toLowerCase()}` " +
                         "(${alreadyAdded.name} for target `${alreadyAdded.target.name}`)"
             }
             archToFramework[arch] = it

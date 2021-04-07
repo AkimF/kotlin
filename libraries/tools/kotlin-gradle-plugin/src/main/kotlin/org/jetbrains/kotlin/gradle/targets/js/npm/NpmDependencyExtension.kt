@@ -99,7 +99,7 @@ internal fun Project.addNpmDependencyExtension() {
 private fun scopePrefix(scope: NpmDependency.Scope): String {
     val scopePrefix = scope.name
         .removePrefix(NORMAL.name)
-        .lowercase()
+        .toLowerCase()
 
     return lowerCamelCaseName(scopePrefix, "npm")
 }
@@ -215,7 +215,7 @@ private abstract class NpmDependencyExtensionDelegate(
     protected fun npmDeclarationException(args: Array<out Any?>): Nothing {
         throw IllegalArgumentException(
             """
-            |Unable to add NPM dependency with scope '${scope.name.lowercase()}' by ${args.joinToString { "'$it'" }}
+            |Unable to add NPM dependency with scope '${scope.name.toLowerCase()}' by ${args.joinToString { "'$it'" }}
             |Possible variants:
             |${possibleVariants().joinToString("\n") { "- ${it.first} -> ${it.second}" }}
             """.trimMargin()

@@ -480,7 +480,7 @@ class KotlinKarma(
 
                         val actualText = if (launcherMessage != null) {
                             val (logLevel, message) = launcherMessage.destructured
-                            actualType = LogType.byValueOrNull(logLevel.lowercase())
+                            actualType = LogType.byValueOrNull(logLevel.toLowerCase())
                             if (actualType?.isErrorLike() == true) {
                                 processFailedBrowsers(text)
                             }

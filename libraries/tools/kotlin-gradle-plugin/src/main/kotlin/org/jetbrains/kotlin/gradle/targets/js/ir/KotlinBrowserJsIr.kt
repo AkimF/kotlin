@@ -110,7 +110,7 @@ open class KotlinBrowserJsIr @Inject constructor(target: KotlinJsIrTarget) :
                         { task.args.add(0, "serve") },
                         { task.bin = "webpack-dev-server/bin/webpack-dev-server.js" }
                     )()
-                    task.description = "start ${mode.name.lowercase()} webpack dev server"
+                    task.description = "start ${mode.name.toLowerCase()} webpack dev server"
 
                     task.devServer = KotlinWebpackConfig.DevServer(
                         open = true,
@@ -176,7 +176,7 @@ open class KotlinBrowserJsIr @Inject constructor(target: KotlinJsIrTarget) :
                             .resolve(binary.linkTask.get().outputFile.name)
                     }
 
-                    task.description = "build webpack ${mode.name.lowercase()} bundle"
+                    task.description = "build webpack ${mode.name.toLowerCase()} bundle"
                     task._destinationDirectory = binary.distribution.directory
 
                     task.dependsOn(

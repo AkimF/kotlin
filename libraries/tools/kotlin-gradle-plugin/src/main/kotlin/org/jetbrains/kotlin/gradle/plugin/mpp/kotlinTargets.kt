@@ -85,7 +85,7 @@ abstract class AbstractKotlinTarget(
         val result = createKotlinVariant(componentName, mainCompilation, usageContexts)
 
         result.sourcesArtifacts = setOf(
-            sourcesJarArtifact(mainCompilation, componentName, dashSeparatedName(targetName.lowercase()))
+            sourcesJarArtifact(mainCompilation, componentName, dashSeparatedName(targetName.toLowerCase()))
         )
 
         setOf(result)
