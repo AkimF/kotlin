@@ -76,6 +76,7 @@ internal class LibraryCommonizer internal constructor(
             when (target) {
                 is LeafCommonizerTarget -> libraries[target]
                 is SharedCommonizerTarget -> CommonNativeManifestDataProvider(
+                    target.konanTargets,
                     target.allLeaves().mapNotNull { leafTarget -> libraries.getOrNull(leafTarget) }
                 )
             }

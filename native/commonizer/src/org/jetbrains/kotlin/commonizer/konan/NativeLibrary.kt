@@ -11,6 +11,7 @@ import gnu.trove.THashMap
 import org.jetbrains.kotlin.commonizer.LeafCommonizerTarget
 import org.jetbrains.kotlin.commonizer.SharedCommonizerTarget
 import org.jetbrains.kotlin.commonizer.TargetDependent
+import org.jetbrains.kotlin.konan.target.KonanTarget
 import org.jetbrains.kotlin.library.KotlinLibrary
 
 interface NativeManifestDataProvider {
@@ -40,6 +41,7 @@ internal class NativeLibrariesToCommonize(val libraries: List<NativeLibrary>) : 
 }
 
 internal class CommonNativeManifestDataProvider(
+    targets: Set<KonanTarget>,
     libraryGroups: Collection<NativeLibrariesToCommonize>
 ) : NativeManifestDataProvider {
     private val manifestIndex: Map<String, NativeSensitiveManifestData>
@@ -55,8 +57,10 @@ internal class CommonNativeManifestDataProvider(
                 if (manifestData != null) {
                     // merge manifests
                     index[libraryName] = manifestData.mergeWith(otherManifestData)
+                        .run { copy(nativeTargets = nativeTargets.toSet() + targets.map { it.name }) }
                 } else {
                     index[libraryName] = otherManifestData
+                        .run { copy(nativeTargets = nativeTargets.toSet() + targets.map { it.name }) }
                 }
             }
         }
