@@ -85,7 +85,7 @@ class MppHighlightingTestDataWithGradleIT : BaseGradleIT() {
 
         gradleBuildScript().appendText("\n" + scriptCustomization)
 
-        val tasks = sourceRoots.map { "compile" + it.kotlinSourceSetName.capitalize() + "KotlinMetadata" }
+        val tasks = sourceRoots.map { "compile" + it.kotlinSourceSetName.replaceFirstChar(Char::uppercaseChar) + "KotlinMetadata" }
 
         build(*tasks.toTypedArray()) {
             if (expectedErrorsPerSourceSetName.values.all { it.all(ErrorInfo::isAllowedInCli) }) {
@@ -173,7 +173,7 @@ class MppHighlightingTestDataWithGradleIT : BaseGradleIT() {
             get() = partsToQualifiedName(qualifiedNameParts)
 
         val kotlinSourceSetName
-            get() = "intermediate${qualifiedName.capitalize()}"
+            get() = "intermediate${qualifiedName.replaceFirstChar(Char::uppercaseChar)}"
 
         val gradleSrcDir
             get() = "src/$kotlinSourceSetName/kotlin"

@@ -74,6 +74,7 @@ class StringJVMTest {
         assertEquals("UTF-32BE", Charsets.UTF_32BE.name())
     }
 
+    @Suppress("DEPRECATION")
     @Test fun capitalize() {
         fun testCapitalize(expected: String, string: String) {
             assertEquals(expected, string.capitalize())

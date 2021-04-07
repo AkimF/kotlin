@@ -33,5 +33,5 @@ fun String.removeJsCompilerSuffix(compilerType: KotlinJsCompilerType): String {
         return truncatedString
     }
 
-    return removeSuffix(compilerType.lowerName.capitalize())
+    return removeSuffix(compilerType.lowerName.replaceFirstChar(Char::uppercaseChar))
 }

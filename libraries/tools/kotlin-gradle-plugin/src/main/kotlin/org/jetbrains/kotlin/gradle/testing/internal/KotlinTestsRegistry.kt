@@ -99,7 +99,7 @@ class KotlinTestsRegistry(val project: Project, val allTestsTaskName: String = "
 
     private fun cleanTaskName(taskName: String): String {
         check(taskName.isNotEmpty())
-        return "clean" + taskName.capitalize()
+        return "clean" + taskName.replaceFirstChar(Char::uppercaseChar)
     }
 
     private val Project.cleanAllTestTask: TaskProvider<*>

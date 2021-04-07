@@ -573,7 +573,8 @@ class MoveConflictChecker(
             val message = if (elementToMove == rootClass) {
                 KotlinBundle.message("text.sealed.class.0.must.be.moved.with.all.its.subclasses", rootClass.name.toString())
             } else {
-                val type = ElementDescriptionUtil.getElementDescription(elementToMove, UsageViewTypeLocation.INSTANCE).capitalize()
+                val type = ElementDescriptionUtil.getElementDescription(elementToMove, UsageViewTypeLocation.INSTANCE)
+                    .replaceFirstChar(Char::uppercaseChar)
                 KotlinBundle.message(
                     "text.0.1.must.be.moved.with.sealed.parent.class.and.all.its.subclasses",
                     type,

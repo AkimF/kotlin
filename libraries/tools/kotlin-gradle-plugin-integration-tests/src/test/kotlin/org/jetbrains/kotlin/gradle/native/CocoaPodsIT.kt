@@ -76,20 +76,20 @@ class CocoaPodsIT : BaseGradleIT() {
     private val defaultBuildTaskName = podBuildFullTaskName()
     private val defaultSetupBuildTaskName = podSetupBuildFullTaskName()
     private val defaultCinteropTaskName = cinteropTaskName + defaultPodName + defaultTarget
-    private val downloadUrlTaskName = podDownloadTaskName + downloadUrlPodName.capitalize()
+    private val downloadUrlTaskName = podDownloadTaskName + downloadUrlPodName.replaceFirstChar(Char::uppercaseChar)
 
-    private fun podDownloadFullTaskName(podName: String = defaultPodName) = podDownloadTaskName + podName.capitalize()
+    private fun podDownloadFullTaskName(podName: String = defaultPodName) = podDownloadTaskName + podName.replaceFirstChar(Char::uppercaseChar)
 
-    private fun podGenFullTaskName(familyName: String = defaultFamily) = podGenTaskName + familyName.capitalize()
+    private fun podGenFullTaskName(familyName: String = defaultFamily) = podGenTaskName + familyName.replaceFirstChar(Char::uppercaseChar)
 
     private fun podSetupBuildFullTaskName(podName: String = defaultPodName, sdkName: String = defaultSDK) =
-        podSetupBuildTaskName + podName.capitalize() + sdkName.capitalize()
+        podSetupBuildTaskName + podName.replaceFirstChar(Char::uppercaseChar) + sdkName.replaceFirstChar(Char::uppercaseChar)
 
     private fun podBuildFullTaskName(podName: String = defaultPodName, sdkName: String = defaultSDK) =
-        podBuildTaskName + podName.capitalize() + sdkName.capitalize()
+        podBuildTaskName + podName.replaceFirstChar(Char::uppercaseChar) + sdkName.replaceFirstChar(Char::uppercaseChar)
 
     private fun cinteropFullTaskName(podName: String = defaultPodName, targetName: String = defaultTarget) =
-        cinteropTaskName + podName.capitalize() + targetName.capitalize()
+        cinteropTaskName + podName.replaceFirstChar(Char::uppercaseChar) + targetName.replaceFirstChar(Char::uppercaseChar)
 
     private lateinit var hooks: CustomHooks
     private lateinit var project: BaseGradleIT.Project

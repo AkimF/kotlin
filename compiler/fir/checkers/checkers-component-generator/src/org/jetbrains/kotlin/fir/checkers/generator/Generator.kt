@@ -163,7 +163,7 @@ class Generator(
         get() = removePrefix("Fir").replaceFirstChar(Char::lowercaseChar) + "s"
 
     private val Alias.allFieldName: String
-        get() = "all${fieldName.capitalize()}"
+        get() = "all${fieldName.replaceFirstChar(Char::uppercaseChar)}"
 
     private val Alias.setType: String
         get() = "Set<$this>"

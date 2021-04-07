@@ -290,6 +290,7 @@ class StringTest {
 
     @Test fun capitalize() {
         fun testCapitalize(expected: String, string: String) {
+            @Suppress("DEPRECATION")
             assertEquals(expected, string.capitalize())
             assertEquals(expected, string.replaceFirstChar { it.uppercase() })
         }

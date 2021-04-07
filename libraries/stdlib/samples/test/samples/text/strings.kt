@@ -6,6 +6,7 @@ import kotlin.test.*
 
 class Strings {
 
+    @Suppress("DEPRECATION")
     @Sample
     fun capitalize() {
         assertPrints("abcd".capitalize(), "Abcd")

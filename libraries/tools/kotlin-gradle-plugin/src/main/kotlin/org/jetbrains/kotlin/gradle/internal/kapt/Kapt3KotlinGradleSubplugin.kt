@@ -85,7 +85,7 @@ class Kapt3GradleSubplugin @Inject internal constructor(private val registry: To
 
         fun getKaptConfigurationName(sourceSetName: String): String {
             return if (sourceSetName != SourceSet.MAIN_SOURCE_SET_NAME)
-                "$MAIN_KAPT_CONFIGURATION_NAME${sourceSetName.capitalize()}"
+                "$MAIN_KAPT_CONFIGURATION_NAME${sourceSetName.replaceFirstChar(Char::uppercaseChar)}"
             else
                 MAIN_KAPT_CONFIGURATION_NAME
         }
@@ -720,7 +720,7 @@ internal fun registerGeneratedJavaSource(kaptTask: TaskProvider<out KaptTask>, j
 internal fun Configuration.getNamedDependencies(): List<Dependency> = allDependencies.filter { it.group != null && it.name != null }
 
 private val ANNOTATION_PROCESSOR = "annotationProcessor"
-private val ANNOTATION_PROCESSOR_CAP = ANNOTATION_PROCESSOR.capitalize()
+private val ANNOTATION_PROCESSOR_CAP = ANNOTATION_PROCESSOR.replaceFirstChar(Char::uppercaseChar)
 
 internal fun checkAndroidAnnotationProcessorDependencyUsage(project: Project) {
     if (project.hasProperty("kapt.dont.warn.annotationProcessor.dependencies")) {

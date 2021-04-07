@@ -25,10 +25,10 @@ class CommonNativeIT : BaseGradleIT() {
     ) = with(transformProjectWithPluginsDsl(projectName, directoryPrefix = "native-apple-devices-common")) {
         configureMemoryInGradleProperties()
 
-        val libCompileTasks = libTargets.map { ":lib:compileKotlin${it.capitalize()}" }
-        val appCompileTasks = appTargets.map { ":app:compileKotlin${it.capitalize()}" }
-        val appLinkFrameworkTasks = appTargets.map { ":app:linkDebugFramework${it.capitalize()}" }
-        val appLinkTestTasks = appTargets.map { ":app:linkDebugTest${it.capitalize()}" }
+        val libCompileTasks = libTargets.map { ":lib:compileKotlin${it.replaceFirstChar(Char::uppercaseChar)}" }
+        val appCompileTasks = appTargets.map { ":app:compileKotlin${it.replaceFirstChar(Char::uppercaseChar)}" }
+        val appLinkFrameworkTasks = appTargets.map { ":app:linkDebugFramework${it.replaceFirstChar(Char::uppercaseChar)}" }
+        val appLinkTestTasks = appTargets.map { ":app:linkDebugTest${it.replaceFirstChar(Char::uppercaseChar)}" }
 
         build(":lib:publish") {
             assertSuccessful()

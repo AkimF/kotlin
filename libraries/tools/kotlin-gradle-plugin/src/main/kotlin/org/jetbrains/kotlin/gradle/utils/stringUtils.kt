@@ -10,7 +10,7 @@ internal fun lowerCamelCaseName(vararg nameParts: String?): String {
     return nonEmptyParts.drop(1).joinToString(
         separator = "",
         prefix = nonEmptyParts.firstOrNull().orEmpty(),
-        transform = String::capitalize
+        transform = { it.replaceFirstChar(Char::uppercaseChar) }
     )
 }
 

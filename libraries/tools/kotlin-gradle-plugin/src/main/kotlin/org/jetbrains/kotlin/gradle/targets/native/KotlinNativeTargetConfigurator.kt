@@ -90,7 +90,7 @@ open class KotlinNativeTargetConfigurator<T : KotlinNativeTarget>(
         val realProducingTask: TaskProvider<*>
         // TODO: Someone remove this HACK PLEASE!
         val realArtifactFile = if (copy) {
-            realProducingTask = project.registerTask<Copy>("copy${producingTask.name.capitalize()}") {
+            realProducingTask = project.registerTask<Copy>("copy${producingTask.name.replaceFirstChar(Char::uppercaseChar)}") {
                 val targetSubDirectory = compilation.target.disambiguationClassifier?.let { "$it/" }.orEmpty()
                 it.destinationDir = project.buildDir.resolve("libs/$targetSubDirectory${compilation.name}")
                 it.from(artifactFile)
@@ -199,7 +199,7 @@ open class KotlinNativeTargetConfigurator<T : KotlinNativeTarget>(
 
         fun configureFatFramework() {
             val fatFrameworkConfigurationName = lowerCamelCaseName(binary.name, binary.target.konanTarget.family.name.lowercase(), "fat")
-            val fatFrameworkTaskName = "link${fatFrameworkConfigurationName.capitalize()}"
+            val fatFrameworkTaskName = "link${fatFrameworkConfigurationName.replaceFirstChar(Char::uppercaseChar)}"
 
             val fatFrameworkTask = if (fatFrameworkTaskName in tasks.names) {
                 tasks.named(fatFrameworkTaskName, FatFrameworkTask::class.java)

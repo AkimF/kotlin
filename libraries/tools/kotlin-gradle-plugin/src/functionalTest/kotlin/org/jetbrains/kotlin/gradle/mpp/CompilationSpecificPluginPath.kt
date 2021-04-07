@@ -29,7 +29,7 @@ internal class CompilationSpecificPluginPath {
 
         // Expect to see plugin classpath for each target compilation
         listOf("jvm1", "jvm2", "js")
-            .map(String::capitalize)
+            .map { it.replaceFirstChar(Char::uppercaseChar) }
             .flatMap { listOf(pluginClassPathConfiguration(it, "main"), pluginClassPathConfiguration(it, "test")) }
             .plus(pluginClassPathConfiguration("metadata", "main")) // and also one for metadata
             .forEach { assertNotNull(project.configurations.findByName(it), "Configuration $it should exist") }
@@ -157,7 +157,7 @@ internal class CompilationSpecificPluginPath {
     }
 
     private fun pluginClassPathConfiguration(target: String, compilation: String) =
-        "kotlinCompilerPluginClasspath${target.capitalize()}${compilation.capitalize()}"
+        "kotlinCompilerPluginClasspath${target.replaceFirstChar(Char::uppercaseChar)}${compilation.replaceFirstChar(Char::uppercaseChar)}"
 
     private fun Project.subplugins(target: String, compilation: String = "main") = this
         .configurations

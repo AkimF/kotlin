@@ -91,7 +91,7 @@ class KaptModelBuilderService : AbstractKotlinGradleModelBuilder() {
                     val compilations = target.compilations ?: continue
                     for (compilation in compilations) {
                         val compileTask = compilation.getCompileKotlinTaskName(project) ?: continue
-                        val moduleName = target.name + compilation.name.capitalize()
+                        val moduleName = target.name + compilation.name.replaceFirstChar(Char::uppercaseChar)
                         handleCompileTask(moduleName, compileTask)
                     }
                 }

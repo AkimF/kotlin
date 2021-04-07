@@ -231,7 +231,7 @@ private fun KotlinPullUpData.checkVisibility(
                 memberDescriptor.renderForConflicts(),
                 targetDescriptor.renderForConflicts()
             )
-            conflicts.putValue(target, message.capitalize())
+            conflicts.putValue(target, message.replaceFirstChar(Char::uppercaseChar))
         }
     }
 

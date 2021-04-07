@@ -332,7 +332,7 @@ open class KaptIncrementalIT : BaseGradleIT() {
     }
 
     private fun getGeneratedFileNames(vararg annotatedElementNames: String): Iterable<String> {
-        val names = annotatedElementNames.map { it.capitalize() + "Generated" }
+        val names = annotatedElementNames.map { it.replaceFirstChar(Char::uppercaseChar) + "Generated" }
         return names.map { it + ".java" }
     }
 }

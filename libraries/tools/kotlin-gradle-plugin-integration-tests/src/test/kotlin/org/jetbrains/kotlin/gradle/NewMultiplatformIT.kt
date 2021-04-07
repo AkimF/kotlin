@@ -261,8 +261,8 @@ class NewMultiplatformIT : BaseGradleIT() {
                     arrayOf("NodeJs")
                 } else {
                     arrayOf(
-                        "NodeJs${LEGACY.lowerName.capitalize()}",
-                        "NodeJs${IR.lowerName.capitalize()}",
+                        "NodeJs${LEGACY.lowerName.replaceFirstChar(Char::uppercaseChar)}",
+                        "NodeJs${IR.lowerName.replaceFirstChar(Char::uppercaseChar)}",
                     )
                 }),
                 "Metadata"
@@ -518,7 +518,7 @@ class NewMultiplatformIT : BaseGradleIT() {
             )
 
             fun javaSourceRootForCompilation(compilationName: String) =
-                if (testJavaSupportInJvmTargets) "src/jvm6${compilationName.capitalize()}/java" else "src/$compilationName/java"
+                if (testJavaSupportInJvmTargets) "src/jvm6${compilationName.replaceFirstChar(Char::uppercaseChar)}/java" else "src/$compilationName/java"
 
             val javaMainSrcDir = javaSourceRootForCompilation("main")
             val javaTestSrcDir = javaSourceRootForCompilation("test")
@@ -1389,7 +1389,7 @@ class NewMultiplatformIT : BaseGradleIT() {
                 "jvm6", "nodeJs", "mingw64", "mingw86", "linux64", "macos64"
             ).flatMapTo(mutableSetOf()) { target ->
                 listOf("main", "test").map { compilation ->
-                    Triple(target, compilation, "$target${compilation.capitalize()}")
+                    Triple(target, compilation, "$target${compilation.replaceFirstChar(Char::uppercaseChar)}")
                 }
             } + Triple("metadata", "main", "commonMain")
 
@@ -1597,7 +1597,7 @@ class NewMultiplatformIT : BaseGradleIT() {
             setupWorkingDir()
             gradleBuildScript().modify(::transformBuildScriptWithPluginsDsl)
 
-            val tasks = listOf("jvm", "js", "linux64").map { ":compileIntegrationTestKotlin${it.capitalize()}" }
+            val tasks = listOf("jvm", "js", "linux64").map { ":compileIntegrationTestKotlin${it.replaceFirstChar(Char::uppercaseChar)}" }
 
             build(
                 *tasks.toTypedArray()
@@ -1647,7 +1647,7 @@ class NewMultiplatformIT : BaseGradleIT() {
             assertTasksExecuted(
                 *testTasks,
                 ":compileIntegrationTestKotlinJvm",
-                ":linkIntegrationDebugTest${nativeHostTargetName.capitalize()}"
+                ":linkIntegrationDebugTest${nativeHostTargetName.replaceFirstChar(Char::uppercaseChar)}"
             )
 
             fun checkUnitTestOutput(targetName: String) {
