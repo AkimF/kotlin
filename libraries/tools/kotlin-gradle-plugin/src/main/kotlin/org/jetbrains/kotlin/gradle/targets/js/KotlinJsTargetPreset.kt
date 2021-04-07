@@ -122,7 +122,7 @@ class KotlinJsSingleTargetPreset(
         irPreset?.let {
             super.provideTargetDisambiguationClassifier(target)
                 ?.removePrefix(target.name.removeJsCompilerSuffix(KotlinJsCompilerType.LEGACY))
-                ?.replaceFirstChar(Char::lowercaseChar)
+                ?.decapitalize()
         }
 
     override fun createKotlinTargetConfigurator() = KotlinJsTargetConfigurator(

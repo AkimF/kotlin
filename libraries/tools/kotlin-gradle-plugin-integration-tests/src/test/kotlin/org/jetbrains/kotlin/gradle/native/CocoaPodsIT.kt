@@ -464,7 +464,7 @@ class CocoaPodsIT : BaseGradleIT() {
         val anotherSdk = "macosx"
         val anotherFamily = "OSX"
         with(project.gradleBuildScript()) {
-            appendToKotlinBlock(anotherTarget.replaceFirstChar(Char::lowercaseChar) + "()")
+            appendToKotlinBlock(anotherTarget.decapitalize() + "()")
         }
         hooks.rewriteHooks {
             assertTasksExecuted(
@@ -486,7 +486,7 @@ class CocoaPodsIT : BaseGradleIT() {
 
         with(project.gradleBuildScript()) {
             var text = readText()
-            text = text.replace(anotherTarget.replaceFirstChar { it.lowercase() } + "()", "")
+            text = text.replace(anotherTarget.decapitalize() + "()", "")
             writeText(text)
         }
         hooks.rewriteHooks {
@@ -628,7 +628,7 @@ class CocoaPodsIT : BaseGradleIT() {
         val anotherSdk = "macosx"
         with(project.gradleBuildScript()) {
             appendToCocoapodsBlock("osx.deploymentTarget = \"13.5\"")
-            appendToKotlinBlock(anotherTarget.replaceFirstChar { it.lowercase() } + "()")
+            appendToKotlinBlock(anotherTarget.decapitalize() + "()")
         }
         val anotherSdkDefaultPodTaskName = podBuildFullTaskName(sdkName = anotherSdk)
         val anotherTargetUrlTaskName = podBuildFullTaskName(downloadUrlPodName, anotherSdk)
