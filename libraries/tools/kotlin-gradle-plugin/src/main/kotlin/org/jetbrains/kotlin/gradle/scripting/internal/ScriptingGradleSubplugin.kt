@@ -127,7 +127,7 @@ private const val RESULTS_CONFIGURATION_SUFFIX = "Extensions"
 
 private fun getDiscoveryClasspathConfigurationName(sourceSetName: String): String = when (sourceSetName) {
     "main" -> MAIN_CONFIGURATION_NAME
-    else -> "$sourceSetName${MAIN_CONFIGURATION_NAME.replaceFirstChar(Char::uppercaseChar)}"
+    else -> "$sourceSetName${MAIN_CONFIGURATION_NAME.capitalize()}"
 }
 
 private fun getDiscoveryResultsConfigurationName(sourceSetName: String): String =

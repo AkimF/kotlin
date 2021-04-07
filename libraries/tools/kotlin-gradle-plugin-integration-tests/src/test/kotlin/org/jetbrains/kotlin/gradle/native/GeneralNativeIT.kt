@@ -329,11 +329,10 @@ class GeneralNativeIT : BaseGradleIT() {
         }
 
         val frameworkTasks = targets.flatMap { target ->
-            val capitalizedTarget = target.replaceFirstChar(Char::uppercaseChar)
             binaries.getValue(target).flatMap {
                 listOf(
-                    ":link${it.name.replaceFirstChar(Char::uppercaseChar)}DebugFramework$capitalizedTarget",
-                    ":link${it.name.replaceFirstChar(Char::uppercaseChar)}ReleaseFramework$capitalizedTarget",
+                    ":link${it.name.capitalize()}DebugFramework${target.capitalize()}",
+                    ":link${it.name.capitalize()}ReleaseFramework${target.capitalize()}",
                 )
             }
         }
@@ -435,7 +434,7 @@ class GeneralNativeIT : BaseGradleIT() {
             "releaseExecutable" to "native-binary",
             "bazDebugExecutable" to "my-baz",
         )
-        val linkTasks = binaries.map { (name, _) -> "link${name.replaceFirstChar(Char::uppercaseChar)}Host" }
+        val linkTasks = binaries.map { (name, _) -> "link${name.capitalize()}Host" }
         val outputFiles = binaries.map { (name, fileBaseName) ->
             val outputKind = NativeOutputKind.values().single { name.endsWith(it.taskNameClassifier, true) }.compilerOutputKind
             val prefix = outputKind.prefix(HostManager.host)
@@ -482,7 +481,7 @@ class GeneralNativeIT : BaseGradleIT() {
     private fun testNativeBinaryDsl(project: String) = with(
         transformNativeTestProjectWithPluginDsl(project, directoryPrefix = "native-binaries")
     ) {
-        val hostSuffix = nativeHostTargetName.replaceFirstChar(Char::uppercaseChar)
+        val hostSuffix = nativeHostTargetName.capitalize()
 
         build("tasks") {
             assertSuccessful()
@@ -951,9 +950,9 @@ class GeneralNativeIT : BaseGradleIT() {
             .resolve("B.kt")
         fileWithSpacesInPath.writeText("fun foo() = 42")
 
-        build("compileKotlin${nativeHostTargetName.replaceFirstChar(Char::uppercaseChar)}") {
+        build("compileKotlin${nativeHostTargetName.capitalize()}") {
             assertSuccessful()
-            checkNativeCommandLineArguments(":compileKotlin${nativeHostTargetName.replaceFirstChar(Char::uppercaseChar)}") { arguments ->
+            checkNativeCommandLineArguments(":compileKotlin${nativeHostTargetName.capitalize()}") { arguments ->
                 val escapedQuotedPath =
                     "\"${fileWithSpacesInPath.absolutePath.replace("\\", "\\\\").replace("\"", "\\\"")}\""
                 assertTrue(

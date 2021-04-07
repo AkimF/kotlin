@@ -78,8 +78,7 @@ class FatFrameworkIT : BaseGradleIT() {
         expectedPlistPlatform: String
     ) {
         assertSuccessful()
-        val capitalizedTargetPrefix = targetPrefix.replaceFirstChar(Char::uppercaseChar)
-        val linkTasks = archs.map { ":linkDebugFramework$capitalizedTargetPrefix${it.replaceFirstChar(Char::uppercaseChar)}" }
+        val linkTasks = archs.map { ":linkDebugFramework${targetPrefix.capitalize()}${it.capitalize()}" }
 
         assertTasksExecuted(linkTasks)
         assertTasksExecuted(":fat")

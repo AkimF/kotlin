@@ -303,7 +303,7 @@ class MultiplatformGradleIT : BaseGradleIT() {
         }
 
         val customSourceSetCompileTasks = listOf(":lib" to "Common", ":libJs" to "2Js", ":libJvm" to "")
-            .map { (module, platform) -> "$module:compile${sourceSetName.replaceFirstChar(Char::uppercaseChar)}Kotlin$platform" }
+            .map { (module, platform) -> "$module:compile${sourceSetName.capitalize()}Kotlin$platform" }
 
         build(*customSourceSetCompileTasks.toTypedArray(), options = defaultBuildOptions().copy(warningMode = WarningMode.Summary)) {
             assertSuccessful()

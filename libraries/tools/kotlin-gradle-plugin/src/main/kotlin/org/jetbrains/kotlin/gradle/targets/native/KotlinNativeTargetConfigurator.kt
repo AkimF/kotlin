@@ -90,7 +90,7 @@ open class KotlinNativeTargetConfigurator<T : KotlinNativeTarget>(
         val realProducingTask: TaskProvider<*>
         // TODO: Someone remove this HACK PLEASE!
         val realArtifactFile = if (copy) {
-            realProducingTask = project.registerTask<Copy>("copy${producingTask.name.replaceFirstChar(Char::uppercaseChar)}") {
+            realProducingTask = project.registerTask<Copy>("copy${producingTask.name.capitalize()}") {
                 val targetSubDirectory = compilation.target.disambiguationClassifier?.let { "$it/" }.orEmpty()
                 it.destinationDir = project.buildDir.resolve("libs/$targetSubDirectory${compilation.name}")
                 it.from(artifactFile)

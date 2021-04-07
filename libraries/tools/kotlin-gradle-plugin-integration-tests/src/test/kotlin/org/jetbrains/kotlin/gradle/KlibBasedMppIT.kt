@@ -88,7 +88,7 @@ class KlibBasedMppIT : BaseGradleIT() {
         // The consumer should correctly receive the klibs of the host-specific source sets
 
         checkTaskCompileClasspath(
-            "compile${hostSpecificSourceSet.replaceFirstChar(Char::uppercaseChar)}KotlinMetadata",
+            "compile${hostSpecificSourceSet.capitalize()}KotlinMetadata",
             listOf(
                 "published-producer-$hostSpecificSourceSet.klib",
                 "published-producer-commonMain.klib",
@@ -164,7 +164,7 @@ class KlibBasedMppIT : BaseGradleIT() {
         val tasksToExecute = listOf(
             ":compileJvmAndJsMainKotlinMetadata",
             ":compileLinuxMainKotlinMetadata",
-            ":compile${hostSpecificSourceSet.replaceFirstChar(Char::uppercaseChar)}KotlinMetadata"
+            ":compile${hostSpecificSourceSet.capitalize()}KotlinMetadata"
         )
 
         build("assemble") {
@@ -202,7 +202,7 @@ class KlibBasedMppIT : BaseGradleIT() {
     private fun checkPublishedHostSpecificMetadata(compiledProject: CompiledProject) = with(compiledProject) {
         val groupDir = project.projectDir.resolve("repo/com/example")
 
-        assertTasksExecuted(":$dependencyModuleName:compile${hostSpecificSourceSet.replaceFirstChar(Char::uppercaseChar)}KotlinMetadata")
+        assertTasksExecuted(":$dependencyModuleName:compile${hostSpecificSourceSet.capitalize()}KotlinMetadata")
 
         // Check that the metadata JAR doesn't contain the host-specific source set entries, but contains the shared-Native source set
         // that can be built on every host:

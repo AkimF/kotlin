@@ -50,7 +50,7 @@ open class DefaultCInteropSettings @Inject constructor(
         get() = compilation.target
 
     override val dependencyConfigurationName: String
-        get() = compilation.disambiguateName("${name.replaceFirstChar(Char::uppercaseChar)}CInterop")
+        get() = compilation.disambiguateName("${name.capitalize()}CInterop")
 
     override var dependencyFiles: FileCollection = project.files()
 
